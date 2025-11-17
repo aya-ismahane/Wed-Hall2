@@ -6,8 +6,9 @@ import OwnerProfileCard from "../AishaComponents/OwnerProfileCard/OwnerProfileCa
 import HallList from "../AishaComponents/HallList/HallList.jsx";
 import ProfilePopup from "../AishaComponents/ProfilePopup/ProfilePopup.jsx";
 
-function Dashboard({ owner = { fullName: "", picture: "" }, setOwner }) {
+function Dashboard({ owner, setOwner }) {
 
+  const safeOwner = owner || { fullName: "", picture: "" };
   const initialHalls = [
     {
       id: 1,
