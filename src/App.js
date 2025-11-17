@@ -25,6 +25,12 @@ import Signupch from './pages/redapages/signupch';
 
 // !-----------------------------------------------------------------
 
+// ---------------------Aisha's imports-----------------------------------------
+import Dashboard from "./Aishapages/Dashboard";
+import RequestsPage from "./Aishapages/RequestsPage";
+import HistoryPage from "./Aishapages/HistoryPage";
+import profilePic from "./images/profilepic.jpg";
+---------------------------------------------------------------------------------
 function App() {
   // !this are the variables used by akram 
     const [isAuth, setIsAuth] = useState(true);
@@ -109,6 +115,11 @@ function App() {
 
       </Route> */}
 
+        {/* Aisha routes */}
+        <Route path="/profile" element={<Dashboard owner={owner} setOwner={setOwner} />} />
+        <Route path="/" element={<Dashboard owner={owner} setOwner={setOwner} />} />
+        <Route path="/requests" element={<RequestsPage owner={owner} />} />
+        <Route path="/history" element={<HistoryPage owner={owner} />} />
 
 
 
