@@ -6,6 +6,7 @@ import Card from './Card';
 
 export default function CardGroup() {
   return (
+    
     <section className="card-group-wrapper">
       <div className="card-group">
         <Card iconSrc="/icons/hall.png" title="The Best wedding Halls"></Card>

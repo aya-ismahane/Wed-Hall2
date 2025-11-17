@@ -4,8 +4,8 @@
   width: 100vw;
   height: 100vh;
   font-family: Arial, sans-serif;
-  overflow: hidden;
-  display: flex;
+  overflow-x: hidden !important;
+  /* display: flex; */
 }
 
 /* Background image */
@@ -25,6 +25,50 @@
   left: 10%;
   height: 350px;
   z-index: 2;
+  /* display: flex;
+    justify-content: flex-start;
+    margin-right: auto; */
+}
+@media (max-width: 850px) {
+  .logocomplet {
+    
+  top: 28%;
+  left: 2% !important;
+  height: 30px;
+  
+   /* Plus proche de la gauche sur petits écrans */
+  }
+}
+
+@media (max-width: 768px) {
+  .logocomplet {
+    
+  top: 28%;
+  left: -1% !important;
+  height: 30px;
+  
+   /* Plus proche de la gauche sur petits écrans */
+  }
+}
+
+@media (max-width: 720px) {
+  .logocomplet {
+    display: none;/* Encore plus à gauche sur très petits écrans */
+  }
+
+  .logincontainer{
+    display: flex !important;
+    justify-content: center !important;
+    
+  }
+  .labels-container{
+    
+    
+    width: 85% !important;
+    
+    
+    
+  }
 }
 
 /* Form container */

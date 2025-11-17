@@ -8,3 +8,13 @@
     color: #9D735B;
     font-weight: bold;
 }
+.aboutusall{
+    
+    /* display: flex; */
+}
+.weddingtablee{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+

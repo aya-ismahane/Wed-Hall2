@@ -4,7 +4,7 @@ import "./landingpage.css"
 
 const Landingpage = () => {
   return (
-    <div>
+    <div calss="koulchi">
 
 
       <div class="photobackground"> 
@@ -14,7 +14,7 @@ const Landingpage = () => {
         <div class="ecrituresurimage">
           <h1 class="citation">L'amour écrit 
             l'histoire, notre salle
-            en devient le décor
+            en devient le décor.
           </h1>
 
         </div>

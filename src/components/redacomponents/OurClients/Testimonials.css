@@ -218,3 +218,21 @@
      height: 90px !important;
     }
 
+@media (max-width: 919px) {
+  .left-2 {
+     display: none;
+    }
+
+.right-0 {
+    display: none;
+    }
+.right-1 {
+    display: none;
+    }
+    .left-0 {
+     display: none;
+    }
+.left-1 {
+    display: none;
+    }
+}

@@ -1,32 +1,52 @@
 
 .background{
-    width: 100%;
+    
     padding: 0;
     margin: 0;
+    display: grid;
+    max-width: 100%;
+    box-sizing: border-box;
 
 }
 
 .photobackground{
     position: relative;
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    min-height: 100vh;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+
+
 }
 
 .ecrituresurimage {
     margin-top: 80px;
-    position: absolute;
+    /* position: relative; */
 }
-
+/* 
 .citation{
-    position: relative;
+    position:absolute;
+    
     color: white;
-    font-size: 13mm;
+    font-size: 3rem;
     top: -500px;
     left: 40px;
-    width: 500px;
-
-
+    
+    max-width: 45%;
+    word-wrap: break-word;
+    padding: 0 20px;
+    box-sizing: border-box;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-style: bold;
+    
 
 
     background-color: none;
@@ -34,6 +54,74 @@
     
 
 }
+@media (max-width: 930px) {
+    .citation {
+        font-size: 2.2rem;
+        max-width: 40%;
+        left: 20px;
+        position: absolute;
+    }
+}
+@media (max-width: 860px) {
+    .citation {
+        font-size: 2.0rem;
+        max-width: 45%;
+        left: 20px;
+        position: absolute;
+    }
+}
+@media (max-width: 768px) {
+    .citation {
+        font-size: 2.2rem;
+        max-width: 75%;
+        left: 20px;
+        position: absolute;
+    }
+}
+
+@media (max-width: 480px) {
+    .citation {
+        font-size: 1.2rem;
+        max-width: 60%;
+        top: 400px;
+        left: 10px;
+        padding: 0 15px;
+        position: absolute;
+    }
+} */
+
+.citation{
+    position: absolute;
+    color: white;
+    font-size: 3rem;
+    top: 25%; /* Use percentage instead of -500px */
+    left: 5%; /* Use percentage instead of 40px */
+    max-width: 45%;
+    word-wrap: break-word;
+    padding: 0 20px;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .citation {
+        font-size: 2.0rem;
+        max-width: 35%;
+        top: 15%;
+        left: 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    .citation {
+        font-size: 1.5rem;
+        max-width: 90%;
+        top: 50%;
+        left: 5%;
+    }
+}
+
 
 .bookingbutton {
     position: relative;
@@ -67,4 +155,13 @@
     font-style: bold;
     font-size: 10mm;
     top: -70px;
+}
+
+.koulchi{
+    overflow-x: hidden;
+
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    box-sizing: border-box;
 }

@@ -14,7 +14,7 @@ import AboutUsCard from './AboutUsCard';
 const AboutUs = () => {
     const halls=AboutUsData
   return (
-    <div>
+    <div class="aboutusall">
       
 
         <div class="webname2" >
