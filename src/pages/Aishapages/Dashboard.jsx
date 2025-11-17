@@ -73,10 +73,10 @@ function Dashboard({ owner, setOwner }) {
 
   return (
     <div className="app-container">
-      <Topbar owner={owner} />
+      <Topbar owner={safeOwner} />
       <div className="dashboard">
         <div className="Owner-section">
-          <OwnerProfileCard owner={owner} onEdit={() => setIsEditing(true)} />
+          <OwnerProfileCard owner={safeOwner} onEdit={() => setIsEditing(true)} />
         </div>
 
         <div className="section-two">
@@ -87,7 +87,7 @@ function Dashboard({ owner, setOwner }) {
 
       {isEditing && (
         <ProfilePopup
-          owner={owner}
+          owner={safeOwner}
           setOwner={setOwner}
           onClose={() => setIsEditing(false)}
         />
