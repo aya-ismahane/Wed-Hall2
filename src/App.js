@@ -30,7 +30,7 @@ import Dashboard from "./Aishapages/Dashboard";
 import RequestsPage from "./Aishapages/RequestsPage";
 import HistoryPage from "./Aishapages/HistoryPage";
 import profilePic from "./images/profilepic.jpg";
----------------------------------------------------------------------------------
+
 function App() {
   // !this are the variables used by akram 
     const [isAuth, setIsAuth] = useState(true);
