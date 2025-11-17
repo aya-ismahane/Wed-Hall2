@@ -1,0 +1,253 @@
+/* === Hall List Section === */
+.section-two {
+  position: relative; 
+  overflow: visible; 
+  z-index: 1; 
+  padding: 20px 40px;
+  margin: 20px 10px;
+}
+
+
+
+/* === Section Header === */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+  color: #825e39;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding-left: 20px;
+}
+
+.see-all {
+  text-decoration: none;
+  color: #fff;
+  margin-right: 20px;
+  background-color: #825e39;
+  padding: 6px 14px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.see-all:hover {
+  background-color: #6c4a2c;
+}
+
+/* === Grid Layout for Halls === */
+.halls-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 24px;
+  justify-items: center;
+}
+
+/* === Add New Hall Box === */
+.add-hall-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #825e39;
+  border-radius: 14px;
+  padding: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+  width: 100%;
+  max-width: 280px;
+  height: 376px;
+  text-align: center;
+}
+
+.add-hall-box:hover {
+  background-color: rgba(130, 94, 57, 0.1);
+  border-color: #6c4a2c;
+}
+
+.add-hall-link {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #825e39;
+  text-decoration: none;
+}
+
+.add-hall-link:hover {
+  color: #6c4a2c;
+}
+
+
+/* === File Upload (optional fallback for quick add) === */
+.file-upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #6c4a2c;
+  margin-top: 10px;
+  gap: 6px;
+}
+
+.file-upload-label input[type="file"] {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 5px;
+}
+
+/* === Popup Overlay === */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* === Popup Content === */
+.popup-content {
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 16px;
+  padding: 30px 35px;
+  width: 420px;
+  max-width: 90%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.25s ease;
+  font-family: "Poppins", sans-serif;
+  max-height: 85vh; /* limit popup to 85% of viewport height */
+  overflow-y: auto; /* allow scroll inside popup if content too tall */
+}
+
+.popup-content::-webkit-scrollbar {
+  width: 6px;
+}
+.popup-content::-webkit-scrollbar-thumb {
+  background-color: rgba(130, 94, 57, 0.4);
+  border-radius: 4px;
+}
+
+
+/* === Popup Form === */
+.popup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.popup-form label {
+  font-weight: 500;
+  color: #6c4a2c;
+}
+
+.popup-form input,
+.popup-form textarea {
+  padding: 8px 10px;
+  border: 1px solid #d0b49f;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.popup-form input:focus,
+.popup-form textarea:focus {
+  border-color: #9d735b;
+  box-shadow: 0 0 4px rgba(157, 115, 91, 0.3);
+}
+
+.image-preview {
+  margin-top: 8px;
+  text-align: center;
+}
+
+.image-preview img {
+  width: 100%;
+  max-height: 180px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.save-btn,
+.cancel-btn {
+  border: none;
+  border-radius: 30px;
+  padding: 8px 18px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.save-btn {
+  background-color: #825e39;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #6c4a2c;
+}
+
+.cancel-btn {
+  background-color: #ddd;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background-color: #ccc;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*  Responsive Layout */
+@media (max-width: 600px) {
+  .halls-container {
+    grid-template-columns: repeat(2, 1fr); /* two cards per row */
+    gap: 12px;
+  }
+
+  .add-hall-box {
+    max-width: 160px; /* smaller card width */
+    height: 250px;    /* shorter height */
+    padding: 10px;
+  }
+
+  .section-two {
+    padding: 10px 15px;
+    margin: 10px;
+  }
+
+  .section-header h2 {
+    font-size: 1rem;
+    padding-left: 10px;
+  }
+
+  .see-all {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+
+  .add-hall-link {
+    font-size: 0.85rem;
+  }
+}

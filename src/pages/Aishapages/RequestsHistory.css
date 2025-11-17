@@ -1,0 +1,308 @@
+/* === Page Layout === */
+.requests-history {
+  background: #fdfaf7;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  padding: 30px 50px;
+  scroll-behavior: smooth;
+}
+
+/* === Section Wrapper === */
+.table-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 25px 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.table-section h3 {
+  color: #6c4a2c;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+/* === Empty Message === */
+.empty-msg {
+  text-align: center;
+  color: #8b7b6f;
+  font-style: italic;
+  padding: 40px 0;
+}
+
+/* === Scrollable Table Wrapper === */
+.table-wrapper {
+  width: 100%;
+  max-height: 60vh; 
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Custom scrollbar */
+.table-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background-color: #c1a57b;
+  border-radius: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: #a88455;
+}
+
+/* === Table === */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.styled-table th {
+  background: #f4ede8;
+  color: #6c4a2c;
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: 600;
+  border-bottom: 2px solid #e8dcd3;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease;
+  position: sticky;
+  top: 0; /* keep header visible while scrolling */
+  z-index: 1;
+}
+
+.styled-table th:hover {
+  background-color: #f8f3ee;
+}
+
+.styled-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+  color: #3e2e1c;
+}
+
+.styled-table tr:hover {
+  background: #f9f5f2;
+}
+
+/* === Sort Icons === */
+.styled-table th svg {
+  margin-left: 8px;
+  font-size: 0.8rem;
+  color: #b48a60;
+  opacity: 0.7;
+  vertical-align: middle;
+  transition: all 0.2s ease;
+}
+
+.styled-table th:hover svg {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* === Action Buttons === */
+.action-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.accept,
+.reject {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: transform 0.2s ease, color 0.2s;
+}
+
+.accept {
+  color: #4caf50;
+}
+.accept:hover {
+  transform: scale(1.2);
+}
+
+.reject {
+  color: #e74c3c;
+}
+.reject:hover {
+  transform: scale(1.2);
+}
+
+/* === Status Badge === */
+.status.completed {
+  background: #d6eadf;
+  color: #31764c;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* === Confirmation Modal === */
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.confirm-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px 28px;
+  text-align: center;
+  max-width: 350px;
+  animation: fadeIn 0.25s ease;
+}
+
+.confirm-box h4 {
+  color: #825e39;
+  margin-bottom: 8px;
+}
+
+.confirm-box p {
+  color: #4a3a2a;
+  margin-bottom: 20px;
+}
+
+.confirm-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.confirm-buttons .yes {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.confirm-buttons .yes:hover {
+  background: #c0392b;
+}
+
+.confirm-buttons .no {
+  background: #ddd;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.confirm-buttons .no:hover {
+  background: #bbb;
+}
+
+/* === Animation === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Search and Sort Header === */
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* === Updated Search Bar === */
+.search-bar {
+  margin-right: 1rem;
+  padding: 0.45rem 1.1rem;
+  border: 1px solid #d9c7b6;
+  border-radius: 10px;
+  width: 280px;
+  font-size: 0.95rem;
+  background-color: #fcf9f6;
+  color: #4a3a2a;
+  box-shadow: 0 1px 4px rgba(180, 138, 96, 0.15);
+  transition: all 0.25s ease;
+}
+
+.search-bar::placeholder {
+  color: #b8a08c;
+}
+
+.search-bar:focus {
+  outline: none;
+  border-color: #b48a60;
+  background-color: #fff;
+  box-shadow: 0 0 6px rgba(180, 138, 96, 0.4);
+}
+
+@media (max-width: 600px) {
+  .table-section {
+    padding: 1rem;
+  }
+
+.table-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden; /* prevents vertical scroll within table */
+    width: 100%;
+    display: block;
+    max-width: 100%;
+  }
+
+  /* Always show scrollbar area when content overflows */
+  .styled-table {
+    display: table;
+    min-width: 700px;
+  }
+
+  .styled-table th,
+  .styled-table td {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
+    white-space: nowrap;
+  }
+
+  /* Optional: emphasize first two columns */
+  .styled-table th:nth-child(1),
+  .styled-table td:nth-child(1),
+  .styled-table th:nth-child(2),
+  .styled-table td:nth-child(2) {
+    background-color: #fdfaf7;
+    position: sticky;
+    left: 0;
+    z-index: 2;
+  }
+
+/* Hide scrollbar but keep touch scroll active */
+.table-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.table-wrapper {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+}

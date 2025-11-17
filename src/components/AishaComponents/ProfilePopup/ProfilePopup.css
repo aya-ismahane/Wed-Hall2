@@ -1,0 +1,118 @@
+/* === Overlay === */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* === Popup Box === */
+.popup {
+  background: #fff;
+  padding: 28px 30px;
+  border-radius: 16px;
+  width: 420px;
+  max-width: 90%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.25s ease;
+  font-family: "Poppins", sans-serif;
+}
+
+/* === Title === */
+.popup h2 {
+  text-align: center;
+  color: #825e39;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+/* === Form Layout === */
+.popup label {
+  display: block;
+  font-weight: 500;
+  color: #6c4a2c;
+  margin-bottom: 6px;
+}
+
+.popup input[type="text"],
+.popup input[type="email"],
+.popup input[type="file"] {
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 14px;
+  border: 1px solid #d0b49f;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.popup input:focus {
+  border-color: #9d735b;
+  box-shadow: 0 0 4px rgba(157, 115, 91, 0.3);
+}
+
+/* === Profile Picture Upload === */
+.popup input[type="file"] {
+  padding: 6px;
+  background-color: #faf7f5;
+  border: 1px dashed #c7a98f;
+  cursor: pointer;
+}
+
+/* === Buttons === */
+.popup-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.save-btn,
+.cancel-btn {
+  border: none;
+  border-radius: 30px;
+  padding: 8px 18px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.save-btn {
+  background-color: #825e39;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #6c4a2c;
+}
+
+.cancel-btn {
+  background-color: #ddd;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background-color: #bbb;
+}
+
+/* === Animation === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
