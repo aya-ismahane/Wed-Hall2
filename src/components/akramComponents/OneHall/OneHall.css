@@ -1,0 +1,84 @@
+.Card {
+  border: none;
+  background-color: transparent !important;
+  font-family: "Poppins", sans-serif !important;
+  font-style: italic;
+  .image {
+    border-radius: 1rem;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: #9d735b;
+  position: relative;
+  .title {
+    font-weight: bold;
+  }
+  .price {
+    font-weight: bold;
+  }
+}
+
+.btn-container {
+  margin: 1rem;
+  /* background-color: #9d735b; */
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  .btn {
+    margin-right: 1rem;
+    color: white;
+    background-color: #9d735b !important;
+    border: none;
+    transition: all 0.3s ease;
+  }
+}
+.tirating {
+  margin: 5px;
+  display: flex;
+  /* background-color: #9d735b; */
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.description {
+  margin: 5px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  text-align: start;
+  /* background-color: #9d735b; */
+}
+.price-container {
+  margin: 5px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.location {
+  margin: 5px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn:hover {
+  background-color: #7a5236 !important;
+  scale: 1.05;
+}
+
+.btn:active {
+  background-color: #5e3e27 !important;
+  scale: 0.95;
+}
+
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* 👈 Number of lines you want */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

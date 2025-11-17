@@ -1,0 +1,22 @@
+.favourite-fluid{
+  display: flex;
+  /* border: 1px solid #9d735b; */
+  margin:1rem;
+  border-radius: 15px;
+  flex-direction: column;
+  /* flex-wrap: wrap;
+  justify-content: space-between; */
+  gap: 10px;
+  padding: 3rem;
+}
+.favourite-list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-around;
+}
+.myFavourite{
+  width: 100%;
+  text-align: center;
+  /* color: #825e39; */
+  font-family: "Poppins", sans-serif !important;
+}

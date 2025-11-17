@@ -1,0 +1,44 @@
+.filter {
+  /* background-color: black !important; */
+  /* display: flex;
+  justify-content: space-around; */
+  /* margin: 1rem; */
+}
+.inside-filter {
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: space-around;
+  background-color: #c8a891;
+  padding: 1rem;
+  width: 30vw;
+}
+.toggle {
+  height: 100%;
+  background-color: transparent;
+  border: none;
+}
+
+.toggle:hover {
+  height: 100% !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+.filter-btn {
+}
+
+.dateperiod {
+  border: none;
+  margin: 8px;
+  padding: 5px;
+  display: inline;
+}
+
+.dateperiod:focus {
+  border: none !important;
+}
+.date-container {
+  /* background-color: black; */
+  display: flex;
+  padding-left: 1rem;
+  /* align-items: center; */
+}

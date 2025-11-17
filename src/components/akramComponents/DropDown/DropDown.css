@@ -1,0 +1,54 @@
+/* .dropDown{
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  color: white;
+  background-color:#9d735b ;
+  border-radius: 10px;
+  width: 8rem;
+}
+.dropDown ul{
+  width: 100%;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-content: start;
+  justify-content: start;
+  align-items: start;
+}
+.dropDown ul li{
+
+  width: 100%;
+} */
+ .dropDown {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  color: white;
+  background-color: #c8a891;
+  box-shadow: 0px 0px 0.4rem black;
+  border-radius: 10px;
+  width: 8rem;
+}
+
+.dropDown ul {
+  width: 100%;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;       /* centers items horizontally */
+  justify-content: center;   /* centers items vertically */
+  padding: 0;
+  margin: 0;
+}
+
+.dropDown ul li {
+  width: 100%;
+  text-align: start; /* optional, to center text inside each li */
+  padding: 10px;
+}
+
+.dropDown ul li a{
+  text-decoration: none;
+  color: white;
+}

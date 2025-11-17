@@ -1,0 +1,100 @@
+/* .bookingInfo-container {
+  margin: 3rem;
+}
+
+th {
+  padding: 1rem !important;
+  text-align: center;
+}
+.header .frow{
+    border-radius: 20px !important;
+
+}
+.body {
+  td {
+    padding: 0.5rem !important;
+    text-align: center;
+  }
+} */
+
+.bookingInfo-container {
+  margin: 3rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: large;
+  /* color: white !important; */
+}
+
+/* make the table not collapse borders */
+.bookingInfo-container table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  overflow: hidden;
+  border-radius: 20px !important;
+  box-shadow: 3px 3px 10px black;
+  /* background-color: aquamarine; */
+}
+
+/* header row */
+.bookingInfo-container thead tr {
+  background-color: #f5f5f5;
+}
+
+/* round top corners */
+.bookingInfo-container thead tr:first-child th:first-child {
+  border-top-left-radius: 20px !important;
+}
+
+.bookingInfo-container thead tr:first-child th:last-child {
+  border-top-right-radius: 20px !important;
+}
+
+/* round bottom corners if you want */
+/* .bookingInfo-container tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 20px !important;
+} */
+/* .bookingInfo-container tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 20px !important;
+} */
+
+/* padding & alignment */
+.bookingInfo-container th,
+.bookingInfo-container td {
+  text-align: center;
+  padding: 1rem !important;
+  background-color: #9d735b !important;
+  border: 1px solid white;
+  color: white;
+  /* font-size: ; */
+}
+ .status_btn {
+  padding: 0.5rem 1rem !important;
+  background-color: white !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  cursor: default !important;
+  border: none !important;
+}
+
+ .status_btn:hover {
+  padding: 0.5rem 1rem !important;
+  background-color: white !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  cursor: default !important;
+  border: none !important;
+  /* transform: none !important; */
+  scale: 1!important;
+}
+
+ .status_btn:active {
+  padding: 0.5rem 1rem !important;
+  background-color: white !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  cursor: default !important;
+  border: none !important;
+  /* transform: none !important; */
+  scale: 1 !important;
+}

@@ -1,0 +1,126 @@
+.profile-fluid{
+  /* background-color: aqua; */
+  /* margin-top: 3rem; */
+display: flex;
+justify-content: center;
+  /* border: 1px solid black; */
+
+  /* margin-top: 4rem;
+  margin-left: 7rem; */
+}
+.profile{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  /* border: 1px solid #9d735b; */
+  /* margin-right: 2rem; */
+  width: 100%;
+  border-radius: 15px;
+  margin: 1rem;
+  padding: 2rem;
+  /* padding: 1rem; */
+  /* background-color: aqua; */
+}
+
+/* !------------------------------------------------------------------------------ */
+/* === Owner Profile Card === */
+.owner-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  /* border: 1px solid #9D735B; */
+  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  text-align: center;
+}
+
+.owner-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+.owner-card h3 {
+  font-family: "Poppins", sans-serif;
+  margin: 3px 0;
+  color: #825e39;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.owner-card p {
+  color: #835d37;
+  font-size:1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.edit-btn {
+  margin-top: 5px;
+  background-color: #9D735B;
+  border: none;
+  color: white;
+  padding: 0.8rem;
+  font-weight: 500;
+  font-size: large;
+  border-radius: 15px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
+}
+
+/* .edit-btn:hover {
+  background-color: #c49a6c;
+} */
+
+.edit-btn:hover {
+  background-color: #7a5236 !important;
+  scale: 1.05;
+}
+
+.edit-btn:active {
+  background-color: #5e3e27 !important;
+  scale: 0.95;
+}
+/* !---------------------------------------------------------------------------- */
+.userName{
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: xx-large;
+
+
+}
+.name{
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: x-large;
+  color: #9D735B;
+
+}
+.info-container{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.table-fluid{
+  /* border: 1px solid #9d735b; */
+    margin: 1rem;
+    border-radius:15px ;
+  /* padding: 2rem; */
+}
+.my_booking{
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: xx-large;
+  text-align: center;
+  margin-top: 2rem;
+}

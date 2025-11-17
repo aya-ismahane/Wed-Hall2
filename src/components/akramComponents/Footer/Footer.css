@@ -1,0 +1,30 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin: 3rem;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.siteName {
+  font-family: "Great Vibes", cursive;
+  font-weight: 400;
+  font-style: normal;
+  color: #9d735b;
+  font-size: xx-large;
+}
+.title {
+  color: #9d735b;
+  /* display: flex;
+  justify-content: space-between; */
+  margin-top: 5px;
+}
+.icons {
+  color: #9d735b;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+.footer-fluid{
+  margin: 1rem;
+}
