@@ -12,3 +12,7 @@ each one makes his pages in one folder named hisname+pages before put it inside 
 # App.js file
 
 make the app.js clean and put inside it just the roots of our pages and the componets that will appear in all pages (like footer and header)
+
+# Assets folder ( in public folder )
+
+put all you images in the assets folder 
