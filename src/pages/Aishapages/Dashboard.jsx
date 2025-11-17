@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "../App.css";
+import "../../App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Topbar from "../AishaComponents/Topbar/Topbar.jsx";
-import OwnerProfileCard from "../AishaComponents/OwnerProfileCard/OwnerProfileCard.jsx";
-import HallList from "../AishaComponents/HallList/HallList.jsx";
-import ProfilePopup from "../AishaComponents/ProfilePopup/ProfilePopup.jsx";
+import Topbar from "../../components/AishaComponents/Topbar/Topbar.jsx";
+import OwnerProfileCard from "../../components/AishaComponents/OwnerProfileCard/OwnerProfileCard.jsx";
+import HallList from "../../components/AishaComponents/HallList/HallList.jsx";
+import ProfilePopup from "../../components/AishaComponents/ProfilePopup/ProfilePopup.jsx";
 
 function Dashboard({ owner, setOwner }) {
 

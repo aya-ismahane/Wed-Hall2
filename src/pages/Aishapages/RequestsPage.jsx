@@ -1,9 +1,9 @@
 // src/pages/RequestsPage.jsx
 import React, { useState } from "react";
-import Topbar from "../AishaComponents/Topbar/Topbar";
+import Topbar from "../../components/AishaComponents/Topbar/Topbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faTimesCircle, faSort } from "@fortawesome/free-solid-svg-icons";
-import { useRequests } from "../context/RequestsProvider";
+import { useRequests } from "../../context/RequestsProvider";
 
 function RequestsPage({ owner }) {
   const { requests, handleAccept, handleReject } = useRequests();

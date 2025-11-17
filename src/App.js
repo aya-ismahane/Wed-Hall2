@@ -26,9 +26,9 @@ import Signupch from './pages/redapages/signupch';
 // !-----------------------------------------------------------------
 
 // ---------------------Aisha's imports-----------------------------------------
-import Dashboard from "./Aishapages/Dashboard";
-import RequestsPage from "./Aishapages/RequestsPage";
-import HistoryPage from "./Aishapages/HistoryPage";
+import Dashboard from "./pages/Aishapages/Dashboard";
+import RequestsPage from "./pages/Aishapages/RequestsPage";
+import HistoryPage from "./pages/Aishapages/HistoryPage";
 import profilePic from "./images/profilepic.jpg";
 
 function App() {

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
-import Topbar from "../AishaComponents/Topbar/Topbar";
+import Topbar from "../../components/AishaComponents/Topbar/Topbar";
 import "./RequestsHistory.css";
-import { useRequests } from "../context/RequestsProvider";
+import { useRequests } from "../../context/RequestsProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSort } from "@fortawesome/free-solid-svg-icons";
 
