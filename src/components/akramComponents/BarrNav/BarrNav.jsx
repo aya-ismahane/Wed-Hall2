@@ -50,7 +50,7 @@ const BarrNav = ({ isAuth, setIsAuth, owner }) => {
                 <Nav style={{ display: "flex", alignItems: "center" }}>
                   <Nav.Link>
                     <Link
-                      to={"/explore"}
+                      to={"/landingpage"}
                       style={{ color: "white", textDecoration: "none" }}
                     >
                       Home
@@ -59,20 +59,16 @@ const BarrNav = ({ isAuth, setIsAuth, owner }) => {
                   {!isAuth ? (
                     <>
                       <Nav.Link
-                        href="#link"
+                        href="/login"
                         style={{ color: "white" }}
-                        onClick={() => {
-                          setIsAuth(true);
-                        }}
+                        
                       >
                         Log in{" "}
                       </Nav.Link>
                       <Nav.Link
-                        href="#link"
+                        href="/Signupch"
                         style={{ color: "white" }}
-                        onClick={() => {
-                          setIsAuth(true);
-                        }}
+                        
                       >
                         Sing up
                       </Nav.Link>

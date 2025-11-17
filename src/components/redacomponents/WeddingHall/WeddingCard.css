@@ -1,0 +1,14 @@
+.booknow{
+
+    position: relative;
+    color: white;
+    background-color: #9D735B;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 10px 17px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+
+}

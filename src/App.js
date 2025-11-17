@@ -9,6 +9,22 @@ import Footer from "./components/akramComponents/Footer/Footer";
 // import Filter from "./components/akramComponents/filter/Filter";
 import BarrNav from "./components/akramComponents/BarrNav/BarrNav";
 // !-----------------------------------------------------------------
+
+// this is importation of reda
+// import { Route, Routes } from 'react-router-dom';
+import MainLandingPage from './pages/redapages/MainLandingPage';
+import LogIn from './pages/redapages/LogIn';
+
+import LogIn2 from './pages/redapages/LogIn2';
+import LogIn3 from './pages/redapages/LogIn3';
+import Signupo from './pages/redapages/Signupo';
+import Signupc from './pages/redapages/Signupc';
+import Signupo2 from './pages/redapages/Signupo2';
+import Signupc2 from './pages/redapages/Signupc2';
+import Signupch from './pages/redapages/signupch';
+
+// !-----------------------------------------------------------------
+
 function App() {
   // !this are the variables used by akram 
     const [isAuth, setIsAuth] = useState(true);
@@ -56,6 +72,46 @@ function App() {
         ></Route>
         {/* <Route path="/filter" element={<Filter/>}></Route> */}
         <Route path="/:id"></Route>
+
+
+
+{/* // this si root of reda */}
+
+
+                <Route path='/landingpage' element={<MainLandingPage/>}>
+
+      </Route>
+      <Route path='/login' element={<LogIn/>}>
+
+      </Route>
+      <Route path='/login2' element={<LogIn2/>}>
+
+      </Route>
+      <Route path='/login3' element={<LogIn3/>}>
+
+      </Route>
+      <Route path='/Signupo' element={<Signupo/>}>
+
+      </Route>
+      <Route path='/Signupc' element={<Signupc/>}>
+
+      </Route>
+      <Route path='/Signupo2' element={<Signupo2/>}>
+
+      </Route>
+      <Route path='/Signupc2' element={<Signupc2/>}>
+
+      </Route>
+      <Route path='/Signupch' element={<Signupch/>}>
+
+      </Route>
+      {/* <Route path='*' element={<Error/>}>
+
+      </Route> */}
+
+
+
+
       </Routes>
       <Footer />
       {/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}

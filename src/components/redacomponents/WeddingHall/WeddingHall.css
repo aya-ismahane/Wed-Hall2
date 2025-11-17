@@ -1,0 +1,52 @@
+.webname2 {
+
+    position: relative;
+    color: #9D735B;
+    font-style: bold;
+    font-size: 5mm;
+    margin-bottom: 35px;
+}
+
+.services2{
+    position: relative;
+    color: black;
+    font-style: bold;
+    font-size: 10mm;
+}
+
+.wed{
+    padding: 300px 0px;
+}
+
+.explorebutton {
+    position: relative;
+    color: white;
+    background-color: #9D735B;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    font-size: 25px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    margin-bottom: 100px;
+
+
+
+}
+.weddingtable{
+
+
+    /* padding: ; */
+    padding-left: 90px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill,minmax(310px,1fr)) !important;
+    /* align-content: stretch; */
+    gap: 0px;
+
+}

@@ -1,0 +1,220 @@
+/* Testimonials.css */
+/* Basic reset for the component scope */
+.t-section {
+  width: 100%;
+  padding: 48px 16px;
+  box-sizing: border-box;
+  background: white;
+  display: flex;
+  justify-content: center;
+}
+
+.t-container {
+  width: 100%;
+  max-width: 1100px;
+  text-align: center;
+  position: relative;
+}
+
+/* Title */
+.t-title {
+  font-family: "Georgia", serif;
+  font-size: 36px;
+  margin: 0 0 28px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: #0b0b0b;
+}
+
+.t-subtitle {
+  display: inline-block;
+  position: relative;
+}
+
+/* decorative underline — mimics the scribble in screenshot */
+.t-subtitle::after {
+  content: "";
+  display: block;
+  height: 8px;
+  width: 180px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.9), rgba(0,0,0,0.65));
+  margin: 8px auto 0;
+  transform: rotate(-2deg);
+  border-radius: 2px;
+  opacity: 0.9;
+}
+
+/* Layout row: left avatars — card — right avatars */
+.t-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 12px;
+  position: relative;
+}
+
+/* floating avatars containers */
+.t-floating {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.t-floating img {
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  border: 4px solid white;
+}
+
+/* the central card wrapper — used to create overlap with avatar */
+.t-card-wrap {
+  position: relative;
+  width: 560px;
+  max-width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* testimonial card */
+.t-card {
+  background: #b88e76; /* brownish color similar to screenshot */
+  color: #0b0b0b;
+  padding: 42px 48px;
+  border-radius: 34px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  min-height: 160px;
+}
+
+/* big quote marks positioned */
+.t-quote-mark {
+  position: absolute;
+  font-family: Georgia, serif;
+  font-weight: 700;
+  color: rgba(0,0,0,0.25);
+  font-size: 56px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.t-quote-open {
+  left: 22px;
+  top: 10px;
+}
+
+.t-quote-close {
+  right: 22px;
+  bottom: 18px;
+}
+
+/* testimonial text */
+.t-text {
+  margin: 14px 0 28px;
+  font-size: 15px;
+  line-height: 1.45;
+  font-weight: 600;
+  color: #0e0e0e;
+  max-width: 84%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* author */
+.t-author {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+/* overlapping avatar circle above the card */
+.t-main-avatar {
+  position: absolute;
+  top: -36px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 50%;
+  padding: 4px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* avatar base style */
+.t-avatar {
+  
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+  vertical-align: middle;
+}
+
+/* Responsive adjustments */
+@media (max-width: 920px) {
+  .t-row {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .t-floating {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .t-card-wrap {
+    width: 90%;
+    max-width: 700px;
+  }
+
+  .t-text {
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  .t-title {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 420px) {
+  .t-section { padding: 28px 12px; }
+  .t-card { padding: 28px 20px; border-radius: 20px; }
+  .t-main-avatar { top: -28px; }
+  .t-quote-mark { font-size: 42px; }
+}
+
+.right-0 {
+     transform: translate(10px, -30px);
+     width: 80px !important; 
+     height: 80px !important;
+    }
+.right-1 {
+     transform: translate(50px, 30px); 
+
+     width: 180px !important; 
+     height: 180px !important;
+    }
+    .left-0 {
+     transform: translate(50px, -30px); 
+
+     width: 130px !important; 
+     height: 130px !important;
+    }
+.left-1 {
+     transform: translate(-50px, 30px); 
+
+     width: 180px !important; 
+     height: 180px !important;
+    }
+.left-2 {
+     transform: translate(50px, 30px); 
+
+     width: 90px !important; 
+     height: 90px !important;
+    }
+

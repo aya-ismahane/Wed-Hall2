@@ -1,0 +1,70 @@
+
+.background{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+}
+
+.photobackground{
+    position: relative;
+}
+
+.ecrituresurimage {
+    margin-top: 80px;
+    position: absolute;
+}
+
+.citation{
+    position: relative;
+    color: white;
+    font-size: 13mm;
+    top: -500px;
+    left: 40px;
+    width: 500px;
+
+
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: bold;
+
+
+    background-color: none;
+    
+    
+
+}
+
+.bookingbutton {
+    position: relative;
+    color: white;
+    background-color: #9D735B;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    font-size: 40px;
+    padding: 15px 25px;
+
+    top: -200px;
+    left: -350px;
+
+
+}
+
+
+
+.webname{
+    position: relative;
+    color: #9D735B;
+    font-style: bold;
+    font-size: 5mm;
+    top: -60px;
+}
+
+.services{
+    position: relative;
+    color: black;
+    font-style: bold;
+    font-size: 10mm;
+    top: -70px;
+}
