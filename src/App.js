@@ -114,7 +114,7 @@ function App() {
         <Route path="/requests" element={<RequestsPage owner={owner} />} />
         <Route path="/history" element={<HistoryPage owner={owner} />} />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
       {/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
     </div>
   );
