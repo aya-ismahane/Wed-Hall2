@@ -2,8 +2,8 @@ import React, { useState, useMemo } from "react";
 import Topbar from "../../components/AishaComponents/Topbar/Topbar";
 import "./RequestsHistory.css";
 import { useRequests } from "../../context/RequestsProvider";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSort } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faSort } from "@fortawesome/free-solid-svg-icons";
 
 function HistoryPage({ owner }) {
   const { history } = useRequests();
@@ -72,7 +72,7 @@ function HistoryPage({ owner }) {
           ) : (
             <div className="table-wrapper">
               <table className="styled-table">
-                <thead>
+                {/* <thead>
                   <tr>
                     <th onClick={() => handleSort("client")}>
                       Client <FontAwesomeIcon icon={faSort} className="sort-icon" />
@@ -87,7 +87,7 @@ function HistoryPage({ owner }) {
                       Status <FontAwesomeIcon icon={faSort} className="sort-icon" />
                     </th>
                   </tr>
-                </thead>
+                </thead> */}
                 <tbody>
                   {filteredHistory.map((h) => (
                     <tr key={h.id}>

@@ -18,6 +18,7 @@ import LogIn from './pages/redapages/LogIn';
 import LogIn2 from './pages/redapages/LogIn2';
 import LogIn3 from './pages/redapages/LogIn3';
 import Signupo from './pages/redapages/Signupo';
+
 import Signupc from './pages/redapages/Signupc';
 import Signupo2 from './pages/redapages/Signupo2';
 import Signupc2 from './pages/redapages/Signupc2';
@@ -117,7 +118,7 @@ function App() {
 
         {/* Aisha routes */}
         <Route path="/profile" element={<Dashboard owner={owner} setOwner={setOwner} />} />
-        <Route path="/" element={<Dashboard owner={owner} setOwner={setOwner} />} />
+        <Route path="/Dashboard" element={<Dashboard owner={owner} setOwner={setOwner} />} />
         <Route path="/requests" element={<RequestsPage owner={owner} />} />
         <Route path="/history" element={<HistoryPage owner={owner} />} />
 
