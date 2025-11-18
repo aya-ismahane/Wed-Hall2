@@ -57,6 +57,7 @@ const HallCard = ({ img, name, rating, location, description, price, services })
     setBooked(true);
     setShowBooking(false);
   };
+  
 
   return (
     <div style={{backgroundColor:'transparent'}}>
@@ -129,7 +130,8 @@ const HallCard = ({ img, name, rating, location, description, price, services })
               <div className="see-more-overlay">See more</div>
             </div>
             {showPopup && (
-              <div className="popup" onClick={() => setShowPopup(false)}>
+
+           <div className="popup" onClick={() => setShowPopup(false)}>
                 <button className="close-popup">&times;</button>
                 <div className="popup-content" onClick={(e) => e.stopPropagation()}>
                   <img src={hall} alt="1" />

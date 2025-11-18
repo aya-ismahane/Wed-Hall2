@@ -16,8 +16,8 @@ const hall = {
 
 const Halldesc = () => {
   return (
-    <div style={{backgroundColor:'black'}}>
-      <Header />
+    <div >
+     
       <HallCard {...hall} />
     </div>
   );

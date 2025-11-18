@@ -6,27 +6,40 @@
   padding: 0;
 }
 
+
 .hall-card {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   gap: 2.5rem; 
   padding: 1.25rem; 
+  max-width:100%;
+  width: 100%;
+  box-sizing: border-box;
+position: absolute;
+ border-radius: 0;
 }
 
+.footer-fluid{
+  display: none;
+}
 
 
 .back {
-  margin-top: 5rem; 
+  margin-left: -41rem;  
+  margin-top:1.5rem;
   background: none;
   border: none;
   cursor: pointer;
-  margin-left: 1.25rem; /* 20px */
+ position: absolute;
+  
+  z-index: 1;
 }
 
 .arrow {
-  width: 2rem; /* 30px */
+  width: 2rem; 
   height: 2rem;
+  
 }
 
 .hall-card .hall-services {
@@ -35,7 +48,8 @@
   justify-content: flex-start;
   gap: 2rem; /* 20px */
   margin-left: 0;
-  width: 80%;
+  width: 70%;
+  margin-top: 7.5rem;
 }
 
 .service-tags {
@@ -74,7 +88,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 60%;
+  gap: 58%;
   justify-content: flex-start;
   flex-wrap: wrap;
 }
@@ -115,10 +129,11 @@
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
-  max-width: 60%;
+  max-width: 100%;
   border-radius: 0.9375rem; /* 15px */
   overflow: hidden;
   gap: 1.25rem;
+  margin-top: 4rem;
 }
 
 .image-holder {
@@ -162,7 +177,6 @@
   width: 100%;
 }
 
-/* Profile pic overlay */
 .owner-pfp {
   position: absolute;
   bottom: 0.5rem;  /* bottom-left corner */
@@ -231,11 +245,15 @@
 .hall-location {
   font-size: 0.95rem;
   color: #777;
-  margin: 0;
+  margin-left: -37rem;
 
 }
 
 .map{
+  position: relative;
+  width: 100%;
+  height: 30rem;
+   overflow: hidden;
   position: relative;
 }
 .hall-description {
@@ -244,6 +262,7 @@
   line-height: 1.5;
   margin: 0.3125rem 0 0.625rem;
   width: 100%;
+  
 }
 
 .price {
@@ -351,18 +370,18 @@
   opacity: 1;
 }
 
-/* Popup styling */
 .popup {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
+  max-height: 1000vh;
   background: rgba(0,0,0,0.7);
-  display: flex;
+  
   justify-content: center;
   align-items: center;
-  z-index: 20000;
+  z-index: 909999990;
 }
 
 .popup-content {
@@ -372,9 +391,11 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
   gap: 0.625rem;
-  max-width: 95%;
-  max-height: 90%;
-  overflow-y: auto;
+  min-width: 95%;
+  min-height: 90vh;
+  overflow-y: 0;
+  z-index: 900;
+
 }
 
 .popup-content img {
@@ -743,5 +764,9 @@
     font-size: 1.3rem;
     height: 2.8rem;
     padding: 0.5rem 1rem;
+  }
+  .footer-fluid{
+    margin-top: 110rem;
+    display: none;
   }
 }

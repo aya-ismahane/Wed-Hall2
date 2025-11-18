@@ -73,7 +73,7 @@
   right: -100%;
   width: 70%;
   max-width: 300px;
-  height: 100vh;
+  min-height: 102vh;
   background: #9D735B;
   display: flex;
   flex-direction: column;
@@ -118,6 +118,7 @@
     margin-left: 1.5rem;
     font-size: 1rem;
   }
+
 }
 
 /* Mobile (<600px) */
