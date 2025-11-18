@@ -4,7 +4,6 @@
   border-radius: 12px;
   background: white;
   box-shadow: 0 3px 12px rgba(0,0,0,0.1);
-  width: 80%;
   margin-top:2rem;
   color:#9d735b;
 }
@@ -17,7 +16,7 @@
 }
 
 .calendar-header h2 {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   text-transform: capitalize;
  
 }
@@ -27,7 +26,7 @@
   border: none;
   padding: 6px 10px;
   border-radius: 6px;
-  font-size: 18px;
+  font-size: 1rem;
 }
 
 .calendar-grid {
@@ -39,19 +38,25 @@
 .day-name {
   text-align: center;
   font-weight: bold;
-  padding: 6px 0;
+  font-size: 1rem;
+  padding: 0.5rem 0;
   background: #f4f4f4;
   border-radius: 6px;
+  height: 2rem;
+  width: 3.5rem;
+  
 }
-
 .day-cell {
-  height: 45px;
+  height: 2rem;
+  width: 3.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #fafafa;
   border-radius: 6px;
   color:black;
+  font-size: 1.6rem;
+  cursor: pointer;
 }
 
 .day-cell.booked {
@@ -70,7 +75,7 @@
 
 @media (max-width: 900px) and (min-width: 601px){
   .calendar {
-    width: 47rem;
+    width: 35rem;
   }
 }
 

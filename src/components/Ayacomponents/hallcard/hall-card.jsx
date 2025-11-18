@@ -8,6 +8,10 @@ import pfp from '../../../images/assets/owner.png';
 import React, { useState } from "react";
 import Schedule from "../schedule/Schedule.jsx";
 import MapLeaf from "../map/Map.jsx";
+import { Link } from "react-router-dom";
+
+
+
 
 const HallCard = ({ img, name, rating, location, description, price, services }) => {
   const [showBooking, setShowBooking] = useState(false);
@@ -57,6 +61,7 @@ const HallCard = ({ img, name, rating, location, description, price, services })
     setBooked(true);
     setShowBooking(false);
   };
+  
 
   return (
     <div style={{backgroundColor:'transparent'}}>
@@ -98,7 +103,7 @@ const HallCard = ({ img, name, rating, location, description, price, services })
               <h2>Location</h2>
             </div>
             <div className="map">
-              <MapLeaf hallLat={36.689} hallLng={2.895} />
+              <MapLeaf hallLat={36.689} hallLng={2.895}zoom={14} />
             </div>
           </div>
 
@@ -116,11 +121,15 @@ const HallCard = ({ img, name, rating, location, description, price, services })
 
         {/* Hall Info */}
         <div className="hall-card-info">
+          
           <div className="image-holder">
             <div className="owner-pfp">
-              <img src={pfp} alt="owner" />
+              <Link to="/profile">
+                <img src={pfp} alt="{owner.fullName}" />
+              </Link>
             </div>
 
+            
             <img src={hall} alt="main" className="main" />
             <img src={hall} alt="side2" className="small1" />
             <img src={hall} alt="side3" className="small2" />
@@ -129,7 +138,8 @@ const HallCard = ({ img, name, rating, location, description, price, services })
               <div className="see-more-overlay">See more</div>
             </div>
             {showPopup && (
-              <div className="popup" onClick={() => setShowPopup(false)}>
+
+           <div className="popup" onClick={() => setShowPopup(false)}>
                 <button className="close-popup">&times;</button>
                 <div className="popup-content" onClick={(e) => e.stopPropagation()}>
                   <img src={hall} alt="1" />
