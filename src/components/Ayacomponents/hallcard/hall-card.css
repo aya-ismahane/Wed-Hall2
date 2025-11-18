@@ -6,40 +6,34 @@
   padding: 0;
 }
 
-
 .hall-card {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  gap: 2.5rem; 
-  padding: 1.25rem; 
-  max-width:100%;
+  gap: 2.5rem;
+  padding: 3rem;
+  max-width: 100%;
   width: 100%;
   box-sizing: border-box;
-position: absolute;
- border-radius: 0;
-}
-
-.footer-fluid{
-  display: none;
+  position: absolute;
+  border-radius: 0;
 }
 
 
 .back {
-  margin-left: -49%;  
-  margin-top:1.5rem;
+  margin-left: -49%;
+  margin-top: 1.5rem;
   background: none;
   border: none;
   cursor: pointer;
- position: absolute;
-  
+  position: absolute;
+
   z-index: 1;
 }
 
 .arrow {
-  width: 2rem; 
+  width: 2rem;
   height: 2rem;
-  
 }
 
 .hall-card .hall-services {
@@ -60,10 +54,10 @@ position: absolute;
 }
 
 .service-tag {
-  background-color: #f3e8e2;  /* light background */
-  color: #9d735b;             /* text color */
-  padding: 0.4rem 0.8rem;     /* tag padding */
-  border-radius: 1rem;        /* rounded pill shape */
+  background-color: #f3e8e2; /* light background */
+  color: #9d735b; /* text color */
+  padding: 0.4rem 0.8rem; /* tag padding */
+  border-radius: 1rem; /* rounded pill shape */
   font-size: 0.9rem;
   font-weight: 500;
   cursor: default;
@@ -71,9 +65,8 @@ position: absolute;
 }
 
 .service-tag:hover {
-  background-color: #e6d0c2;  /* slightly darker on hover */
+  background-color: #e6d0c2; /* slightly darker on hover */
 }
-
 
 .title {
   font-weight: 700;
@@ -165,10 +158,18 @@ position: absolute;
   border-radius: 0.75rem;
 }
 
-.image-holder .main { grid-area: main; }
-.image-holder .small1 { grid-area: small1; }
-.image-holder .small2 { grid-area: small2; }
-.image-holder .small3 { grid-area: small3; }
+.image-holder .main {
+  grid-area: main;
+}
+.image-holder .small1 {
+  grid-area: small1;
+}
+.image-holder .small2 {
+  grid-area: small2;
+}
+.image-holder .small3 {
+  grid-area: small3;
+}
 
 .hall-card-details {
   display: flex;
@@ -179,14 +180,14 @@ position: absolute;
 
 .owner-pfp {
   position: absolute;
-  bottom: 0.5rem;  /* bottom-left corner */
+  bottom: 0.5rem; /* bottom-left corner */
   left: 0.5rem;
-  width: 4rem;      /* desktop default */
+  width: 4rem; /* desktop default */
   height: 4rem;
   border-radius: 50%;
   border: 2px solid #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  z-index: 10;      /* always above images */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 10; /* always above images */
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -217,7 +218,6 @@ position: absolute;
   }
 }
 
-
 .hall-details {
   display: flex;
   flex-direction: column;
@@ -246,14 +246,13 @@ position: absolute;
   font-size: 0.95rem;
   color: #777;
   margin-left: -88%;
-
 }
 
-.map{
+.map {
   position: relative;
   width: 100%;
   height: 30rem;
-   overflow: hidden;
+  overflow: hidden;
   position: relative;
 }
 .hall-description {
@@ -264,18 +263,17 @@ position: absolute;
   margin-left: 0;
   width: 100%;
   text-align: justify;
-  
 }
 
 .price {
-  color: #9D735B;
-  font-size: 2.2rem; 
+  color: #9d735b;
+  font-size: 2.2rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
   text-transform: capitalize;
   text-align: right;
-  margin-top: -0.625rem; 
+  margin-top: -0.625rem;
 }
 
 .book-now-button {
@@ -286,14 +284,14 @@ position: absolute;
   padding: 0.625rem 1.25rem;
   font-size: 1.5rem;
   font-weight: 400;
-  height: 3.125rem; 
+  height: 3.125rem;
   cursor: pointer;
   transition: 0.3s;
 }
 
 .book-now-button:hover {
   background-color: #7f5a45;
-  transform: translateY(-0.1875rem); 
+  transform: translateY(-0.1875rem);
 }
 
 .booking-section {
@@ -359,7 +357,7 @@ position: absolute;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(3px);
   display: flex;
   justify-content: center;
@@ -379,8 +377,8 @@ position: absolute;
   min-width: 100vw;
   min-height: 100vh;
   max-height: 1000vh;
-  background: rgba(0,0,0,0.7);
-  
+  background: rgba(0, 0, 0, 0.7);
+
   justify-content: center;
   align-items: center;
   z-index: 909999990;
@@ -397,7 +395,6 @@ position: absolute;
   min-height: 90vh;
   overflow-y: 0;
   z-index: 900;
-
 }
 
 .popup-content img {
@@ -419,10 +416,9 @@ position: absolute;
 }
 
 @media (max-width: 600px) {
-
   .hall-card {
     flex-direction: column;
-    align-items: start;   
+    align-items: start;
     gap: 2rem;
     padding: 0.75rem;
     margin-left: 0.5rem;
@@ -430,7 +426,7 @@ position: absolute;
 
   /* Back button spacing */
   .back {
-    margin-top: 8rem; 
+    margin-top: 8rem;
   }
 
   /* Reorder: Card first, Services second */
@@ -438,10 +434,9 @@ position: absolute;
     order: 1;
     width: 100%;
   }
-  .map{
+  .map {
     width: 33rem;
   }
-  
 
   .hall-services {
     order: 2;
@@ -455,9 +450,9 @@ position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem; 
+    gap: 0.5rem;
     width: 100%;
-    position: relative; 
+    position: relative;
   }
 
   .image-holder .small1,
@@ -467,14 +462,14 @@ position: absolute;
 
   .image-holder img.main {
     width: 100%;
-    height: 20rem; 
+    height: 20rem;
     object-fit: cover;
     border-radius: 0.75rem;
   }
 
   .image-holder .small3 {
     width: 100%;
-    height: 6rem; 
+    height: 6rem;
     overflow: hidden;
     border-radius: 0.75rem;
     position: relative;
@@ -485,8 +480,6 @@ position: absolute;
     height: 100%;
     object-fit: cover;
   }
-
-  
 
   .hall-card-info,
   .Schedule {
@@ -507,8 +500,6 @@ position: absolute;
   .hall-description {
     font-size: 1.2rem;
   }
-
-  
 
   .price {
     font-size: 1.8rem;
@@ -562,26 +553,24 @@ position: absolute;
   }
 
   .popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 200000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200000;
+  }
 
-  
-}
-
-.popup-content{
-  min-height: 100vw;
-  min-width: 100vh;
-  overflow-y: auto;
-  margin-top:-20rem;
-}
+  .popup-content {
+    min-height: 100vw;
+    min-width: 100vh;
+    overflow-y: auto;
+    margin-top: -20rem;
+  }
 
   .popup-content img {
     width: 100%;
@@ -607,28 +596,22 @@ position: absolute;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 100000000;
   }
-
-  
-
-
 }
-
 
 /* ---------- BREAKPOINT: 600px < width <= 900px ---------- */
 @media (max-width: 900px) and (min-width: 601px) {
   /* Main card */
   .hall-card {
-    flex-direction: column;        /* stack vertically */
-    align-items: center;           /* center horizontally */
+    flex-direction: column; /* stack vertically */
+    align-items: center; /* center horizontally */
     gap: 2rem;
     padding: 1rem;
-    
   }
   /* Reorder sections */
   .hall-card-info {
@@ -650,7 +633,6 @@ position: absolute;
     font-size: 1.5rem;
   }
 
-  
   .image-holder {
     display: grid;
     grid-template-areas:
@@ -663,17 +645,17 @@ position: absolute;
     position: relative;
   }
   .popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 20000;
-}
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20000;
+  }
   .image-holder img {
     width: 100%;
     height: 100%;
@@ -682,32 +664,31 @@ position: absolute;
   }
 
   .image-holder .small3 {
-  position: relative;
-  width: 100%;
-  height: 6rem; /* fixed height */
-  overflow: hidden;
-  border-radius: 0.75rem;
-}
+    position: relative;
+    width: 100%;
+    height: 6rem; /* fixed height */
+    overflow: hidden;
+    border-radius: 0.75rem;
+  }
 
-.image-holder .see-more-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;      /* exactly same size as .small3 */
-  background: rgba(0,0,0,0.4);
-  backdrop-filter: blur(3px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-weight: 600;
-  font-size: 1.2rem;
-  border-radius: 0.75rem;
-  cursor: pointer;
-  z-index: 5;
-}
-
+  .image-holder .see-more-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* exactly same size as .small3 */
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 600;
+    font-size: 1.2rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    z-index: 5;
+  }
 
   /* Hall details */
   .hall-name {
@@ -757,15 +738,14 @@ position: absolute;
     width: 100%;
   }
 
-
   .date-input {
     padding: 0.5rem;
     font-size: 0.95rem;
   }
-  .map{
+  .map {
     position: relative;
-    width:47rem;
-    height:auto;
+    width: 47rem;
+    height: auto;
   }
 
   .book-now-button {
@@ -773,7 +753,7 @@ position: absolute;
     height: 2.8rem;
     padding: 0.5rem 1rem;
   }
-  .footer-fluid{
+  .footer-fluid {
     margin-top: 110rem;
     display: none;
   }

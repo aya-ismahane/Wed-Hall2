@@ -39,9 +39,9 @@ const HallCard = ({
   const params = useParams();
   useEffect(() => {
     const id = Number(params.id);
-    setCurrentHall(arrHalls.find(hall=>hall.id==id))
-  }, [params,arrHalls]);
-  console.log('current',currnetHall)
+    setCurrentHall(arrHalls.find((hall) => hall.id == id));
+  }, [params, arrHalls]);
+  console.log("current", currnetHall);
   // console.log('id',id)
 
   const handleFromChange = (e) => {
@@ -145,11 +145,11 @@ const HallCard = ({
               </Link>
             </div>
 
-            <img src={hall} alt="main" className="main" />
-            <img src={hall} alt="side2" className="small1" />
-            <img src={hall} alt="side3" className="small2" />
+            <img src={currnetHall?.image?.[0]} alt="main" className="main" />
+            <img src={currnetHall?.image?.[1]} alt="side2" className="small1" />
+            <img src={currnetHall?.image?.[2]} alt="side3" className="small2" />
             <div className="small3" onClick={() => setShowPopup(true)}>
-              <img src={hall} alt="side4" />
+              <img src={currnetHall?.image?.[0]} alt="side4" />
               <div className="see-more-overlay">See more</div>
             </div>
             {showPopup && (
@@ -159,11 +159,9 @@ const HallCard = ({
                   className="popup-content"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <img src={hall} alt="1" />
-                  <img src={hall} alt="2" />
-                  <img src={hall} alt="3" />
-                  <img src={hall} alt="4" />
-                  <img src={hall} alt="5" />
+                  {currnetHall.image.map((hi) => (
+                    <img src={hi} />
+                  ))}
                 </div>
               </div>
             )}

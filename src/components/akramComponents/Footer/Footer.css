@@ -1,17 +1,17 @@
-.footer {
+/* .footer {
   display: flex;
   justify-content: space-between;
   margin: 3rem;
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
-}
-.siteName {
-  font-family: "Great Vibes", cursive;
-  font-weight: 400;
-  font-style: normal;
-  color: #9d735b;
-  font-size: xx-large;
+} */
+#siteName {
+  font-family: "Great Vibes", cursive !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  color: #9d735b !important;
+  font-size: xx-large !important;
 }
 .title {
   color: #9d735b;
@@ -25,6 +25,14 @@
   justify-content: space-between;
   margin-top: 5px;
 }
-.footer-fluid{
-  margin: 1rem;
+
+/* .footer-fluid {
+  width: 100%;
+  background-color: #f8f8f8; 
+  padding: 2rem 1rem;
+  box-sizing: border-box;  */
+.container-fluid hr {
+  /* margin: 1rem 0; */
+  border: none;
+  border-top: 1px solid #ccc;
 }

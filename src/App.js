@@ -1,11 +1,11 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 // !this is the importation of Akram
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import ViewHalls from "./pages/akramPages/viewHalls/ViewHalls";
 import MyBooking from "./pages/akramPages/MyBookings/MyBookings";
 import { useState } from "react";
-import Footer from "./components/akramComponents/Footer/Footer";
+// import Footer from "./components/akramComponents/Footer/Footer";
 // import Filter from "./components/akramComponents/filter/Filter";
 import BarrNav from "./components/akramComponents/BarrNav/BarrNav";
 // !-----------------------------------------------------------------
@@ -35,6 +35,7 @@ import Halldesc from "./pages/Ayapages/Halldesc";
 import Topbar from "./components/AishaComponents/Topbar/Topbar";
 import Header from "./components/Ayacomponents/header/Header";
 import AboutUs from "./components/redacomponents/aboutus/AboutUs";
+import Footer from "./components/akramComponents/Footer/Footer";
 
 function App() {
   // !this are the variables used by akram
@@ -50,6 +51,8 @@ function App() {
   const [myFavourite, setMyFavourite] = useState([]);
   const [favourite, setFavourite] = useState(false);
   // !--------------------------------------------------------------
+    const location = useLocation();
+      const shouldShowFooter = !/^\/\d+$/.test(location.pathname);
   return (
     <div className="App">
       {/* ! this are the routes of akram */}
@@ -104,12 +107,18 @@ function App() {
 
         {/* Aisha routes */}
 
-        <Route path="/profile" element={<Dashboard owner={owner} setOwner={setOwner} />} />
-        <Route path="/Dashboard" element={<Dashboard owner={owner} setOwner={setOwner} />} />
+        <Route
+          path="/profile"
+          element={<Dashboard owner={owner} setOwner={setOwner} />}
+        />
+        <Route
+          path="/Dashboard"
+          element={<Dashboard owner={owner} setOwner={setOwner} />}
+        />
         <Route path="/requests" element={<RequestsPage owner={owner} />} />
         <Route path="/history" element={<HistoryPage owner={owner} />} />
       </Routes>
-      <Footer />
+     {shouldShowFooter && <Footer />}
       {/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
     </div>
   );
