@@ -6,8 +6,8 @@ import sched from '../assets/sched.svg';
 import hall from '../assets/hall.png';
 import pfp from '../assets/owner.png';
 import React, { useState } from "react";
-import Schedule from "./Schedule.jsx";
-import MapLeaf from "./Map.jsx";
+import Schedule from "../schedule/Schedule.jsx";
+import MapLeaf from "../map/Map.jsx";
 
 const HallCard = ({ img, name, rating, location, description, price, services }) => {
   const [showBooking, setShowBooking] = useState(false);
