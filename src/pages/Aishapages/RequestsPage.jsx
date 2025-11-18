@@ -1,8 +1,8 @@
 // src/pages/RequestsPage.jsx
 import React, { useState } from "react";
 import Topbar from "../../components/AishaComponents/Topbar/Topbar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle, faTimesCircle, faSort } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faCheckCircle, faTimesCircle, faSort } from "@fortawesome/free-solid-svg-icons";
 import { useRequests } from "../../context/RequestsProvider";
 
 function RequestsPage({ owner }) {
@@ -62,7 +62,7 @@ function RequestsPage({ owner }) {
           ) : (
             <div className="table-wrapper">
               <table className="styled-table">
-                <thead>
+                {/* <thead>
                   <tr>
                     <th onClick={() => handleSort("client")}>
                       Client
@@ -77,7 +77,7 @@ function RequestsPage({ owner }) {
                     <th>Period</th>
                     <th>Actions</th>
                   </tr>
-                </thead>
+                </thead> */}
                 <tbody>
                   {filteredRequests.map((req) => (
                     <tr key={req.id}>
@@ -89,10 +89,10 @@ function RequestsPage({ owner }) {
                       </td>
                       <td className="action-buttons">
                         <button className="accept" onClick={() => handleAccept(req)}>
-                          <FontAwesomeIcon icon={faCheckCircle} />
+                          {/* <FontAwesomeIcon icon={faCheckCircle} /> */}
                         </button>
                         <button className="reject" onClick={() => setConfirmReject(req)}>
-                          <FontAwesomeIcon icon={faTimesCircle} />
+                          {/* <FontAwesomeIcon icon={faTimesCircle} /> */}
                         </button>
                       </td>
                     </tr>

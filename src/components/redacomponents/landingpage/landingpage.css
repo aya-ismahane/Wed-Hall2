@@ -1,17 +1,13 @@
-
 .background{
-    
     padding: 0;
     margin: 0;
     display: grid;
     max-width: 100%;
     box-sizing: border-box;
-
 }
 
 .photobackground{
     position: relative;
-    
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -22,124 +18,193 @@
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
-
-
+    margin-bottom: 10px;
 }
 
 .ecrituresurimage {
     margin-top: 80px;
-    /* position: relative; */
-}
-/* 
-.citation{
-    position:absolute;
-    
-    color: white;
-    font-size: 3rem;
-    top: -500px;
-    left: 40px;
-    
-    max-width: 45%;
-    word-wrap: break-word;
-    padding: 0 20px;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    font-style: bold;
-    
-
-
-    background-color: none;
-    
-    
-
-}
-@media (max-width: 930px) {
-    .citation {
-        font-size: 2.2rem;
-        max-width: 40%;
-        left: 20px;
-        position: absolute;
-    }
-}
-@media (max-width: 860px) {
-    .citation {
-        font-size: 2.0rem;
-        max-width: 45%;
-        left: 20px;
-        position: absolute;
-    }
-}
-@media (max-width: 768px) {
-    .citation {
-        font-size: 2.2rem;
-        max-width: 75%;
-        left: 20px;
-        position: absolute;
-    }
 }
 
-@media (max-width: 480px) {
-    .citation {
-        font-size: 1.2rem;
-        max-width: 60%;
-        top: 400px;
-        left: 10px;
-        padding: 0 15px;
-        position: absolute;
-    }
-} */
 
 .citation{
     position: absolute;
     color: white;
-    font-size: 3rem;
-    top: 25%; /* Use percentage instead of -500px */
-    left: 5%; /* Use percentage instead of 40px */
+    font-size: clamp(1.5rem, 4vw, 3rem); 
+    top: 20%;
+    left: 5%;
     max-width: 45%;
     word-wrap: break-word;
     padding: 0 20px;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
+    line-height: 1.2;
 }
 
-@media (max-width: 768px) {
-    .citation {
-        font-size: 2.0rem;
-        max-width: 35%;
-        top: 15%;
-        left: 5%;
-    }
-}
 
-@media (max-width: 480px) {
-    .citation {
-        font-size: 1.5rem;
-        max-width: 90%;
-        top: 50%;
-        left: 5%;
-    }
+.divbutton {
+    position: absolute;
+    bottom: 15%;
+    left: 5%;
+    z-index: 10;
 }
-
 
 .bookingbutton {
-    position: relative;
     color: white;
     background-color: #9D735B;
     border: none;
     border-radius: 100px;
     cursor: pointer;
-    font-size: 40px;
-    padding: 15px 25px;
+    font-size: clamp(1.2rem, 2.5vw, 2.5rem); 
+    padding: clamp(10px, 2vw, 15px) clamp(20px, 4vw, 25px);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
 
-    top: -200px;
-    left: -350px;
+.bookingbutton:hover {
+    background-color: #8a634d;
+    transform: translateY(-2px);
+}
 
+
+@media (max-width: 1024px) {
+    .citation {
+        max-width: 50%;
+        top: 15%;
+        left: 5%;
+        font-size: 2.2rem;
+    }
+    
+    .divbutton {
+        bottom: 50%;
+        left: 5%;
+    }
+    .ecrituresurimage {
+    margin-top: 20px;
+}
+}
+
+@media (max-width: 768px) {
+    .citation {
+        max-width: 60%;
+        top: 15%;
+        left: 5%;
+        font-size: 1.8rem;
+        padding: 0 15px;
+    }
+    
+    .divbutton {
+        bottom: 45%;
+        left: 5%;
+    }
+    
+    .bookingbutton {
+        padding: 12px 20px;
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .citation {
+        max-width: 60%;
+        top: 5%;
+        left: 5%;
+        font-size: 1.8rem;
+        padding: 0 15px;
+    }
+    
+    .divbutton {
+        bottom: 45%;
+        left: 5%;
+    }
+    
+    .bookingbutton {
+        padding: 12px 20px;
+        font-size: 1.3rem;
+    }
+        .photobackground{
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    min-height: 70vh;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-bottom: 0px;
+}
+}
+
+
+@media (max-width: 490px) {
+    .citation {
+        max-width: 90%;
+        top: 5%;
+        left: 5%;
+        font-size: 1.5rem;
+        text-align: center;
+        padding: 0 10px;
+    }
+    
+    .divbutton {
+        position: absolute;
+        bottom: 40%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        text-align: center;
+    }
+    
+    .bookingbutton {
+        width: 100%;
+        max-width: 280px;
+        font-size: 1.2rem;
+        padding: 12px 24px;
+        margin: 0 auto;
+    }
+
+    
+    .ecrituresurimage {
+        margin-top: 60px;
+    }
+
+    .photobackground{
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    min-height: 60vh;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-bottom: 0px;
+}
 
 }
 
 
+@media (max-width: 360px) {
+    .citation {
+        font-size: 1.3rem;
+        top: 12%;
+        max-width: 95%;
+    }
+    
+    .divbutton {
+        bottom: 12%;
+    }
+    
+    .bookingbutton {
+        font-size: 1.1rem;
+        padding: 10px 20px;
+    }
+}
 
 .webname{
     position: relative;
@@ -159,9 +224,14 @@
 
 .koulchi{
     overflow-x: hidden;
-
     margin: 0;
     padding: 0;
     max-width: 100%;
     box-sizing: border-box;
-}
+}  
+
+
+
+
+
+

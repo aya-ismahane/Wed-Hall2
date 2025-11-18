@@ -103,14 +103,9 @@ function App() {
       </Route> */}
 
         {/* Aisha routes */}
-        <Route
-          path="/profile"
-          element={<Dashboard owner={owner} setOwner={setOwner} />}
-        />
-        <Route
-          path="/"
-          element={<Dashboard owner={owner} setOwner={setOwner} />}
-        />
+
+        <Route path="/profile" element={<Dashboard owner={owner} setOwner={setOwner} />} />
+        <Route path="/Dashboard" element={<Dashboard owner={owner} setOwner={setOwner} />} />
         <Route path="/requests" element={<RequestsPage owner={owner} />} />
         <Route path="/history" element={<HistoryPage owner={owner} />} />
       </Routes>
