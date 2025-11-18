@@ -53,10 +53,14 @@
   /* background-color: #9d735b; */
 }
 .price-container {
-  margin: 5px;
+  margin: 10px;
   width: 100%;
   display: flex;
   justify-content: flex-start;
+  h5{
+    font-size: x-large !important;
+  }
+  
 }
 
 .location {

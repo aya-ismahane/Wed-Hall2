@@ -47,13 +47,13 @@ const ViewHalls = ({
           </span>
         </div>
 
-        {isAuth && (
+        {/* {isAuth && ( */}
           <Filter
             halls={halls}
             setHalls={setHalls}
             weddingHalls={weddingHalls}
           />
-        )}
+        {/* )} */}
       </div>
       <div className="halls">
         {halls.length > 0 ? (
