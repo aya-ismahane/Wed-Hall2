@@ -19,7 +19,7 @@ L.Icon.Default.mergeOptions({
 // Custom blue icon for user location
 const userIcon = new L.Icon({
   iconUrl: "https://cdn-icons-png.flaticon.com/512/64/64113.png",
-  iconSize: [25, 41],
+  iconSize: [35, 35],
   iconAnchor: [12, 41],
   popupAnchor: [0, -30],
   shadowUrl: markerShadow,
@@ -51,7 +51,7 @@ function FitBounds({ userLocation, hallLocation }) {
   return null;
 }
 
-export default function Map({ hallLat, hallLng }) {
+export default function MapLeaf({ hallLat, hallLng }) {
   const [userLocation, setUserLocation] = useState(null);
 
   useEffect(() => {
@@ -61,39 +61,37 @@ export default function Map({ hallLat, hallLng }) {
       },
       (err) => {
         console.error("Location error:", err);
+        // Fallback to a default location if geolocation fails
+        setUserLocation({ lat: 36.711, lng: 2.895 });
       }
     );
   }, []);
 
   const hallLocation = { lat: hallLat, lng: hallLng };
-  const route = userLocation ? [[userLocation.lat, userLocation.lng], [hallLat, hallLng]] : null;
 
   return (
     <MapContainer
       center={[hallLat, hallLng]}
-      zoom={14}
+      zoom={13}
       className="leaflet-map"
+      style={{ height: '400px', width: '100%' }} // Added inline style as backup
     >
-      {/* Fixed TileLayer URL */}
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-
-      {/* Hall marker (red) */}
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      
+      {/* Hall marker */}
       <Marker position={[hallLat, hallLng]} icon={hallIcon}>
         <Popup>Wedding Hall</Popup>
       </Marker>
 
-      {/* User marker (blue) */}
+      {/* User marker - show fallback if geolocation works but no permission */}
       {userLocation && (
         <Marker position={[userLocation.lat, userLocation.lng]} icon={userIcon}>
           <Popup>You are here</Popup>
         </Marker>
       )}
-
-      {/* Polyline connecting user → hall */}
-      {route && <Polyline positions={route} color="blue" weight={3} />}
-
-      {/* Fit map bounds to show both markers */}
-      {userLocation && <FitBounds userLocation={userLocation} hallLocation={hallLocation} />}
     </MapContainer>
   );
 }
