@@ -1,0 +1,82 @@
+.calendar {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+  width: 80%;
+  margin-top:2rem;
+  color:#9d735b;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.calendar-header h2 {
+  font-size: 1.3rem;
+  text-transform: capitalize;
+ 
+}
+
+.calendar-header button {
+  background: #eee;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 18px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.day-name {
+  text-align: center;
+  font-weight: bold;
+  padding: 6px 0;
+  background: #f4f4f4;
+  border-radius: 6px;
+}
+
+.day-cell {
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fafafa;
+  border-radius: 6px;
+  color:black;
+}
+
+.day-cell.booked {
+  background: #ffdddd;
+  border: 2px solid #ff4f4f;
+  color: #b30000;
+  font-weight: bold;
+}
+
+.day-cell.pinned {
+  background: #ffe8cc;
+  border: 2px solid #ff9900;
+  color: #cc6600;
+  font-weight: bold;
+}
+
+@media (max-width: 900px) and (min-width: 601px){
+  .calendar {
+    width: 47rem;
+  }
+}
+
+@media (max-width: 600px){
+  .calendar {
+    width: 34rem;
+    margin-top:1rem;
+  }
+}

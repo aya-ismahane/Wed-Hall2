@@ -1,0 +1,9 @@
+.leaflet-map {
+  height: 400px;
+  width: 100%;
+  border-radius: 10px;
+  position: relative; 
+  z-index: 1; 
+}
+
+
