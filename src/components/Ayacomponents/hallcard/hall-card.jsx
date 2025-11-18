@@ -1,32 +1,48 @@
-import './hall-card.css';
-import arrow from '../../../images/assets/arrow.svg';
-import component from '../../../images/assets/component.svg';
-import locate from '../../../images/assets/locate.svg';
-import sched from '../../../images/assets/sched.svg';
-import hall from '../../../images/assets/hall.png';
-import pfp from '../../../images/assets/owner.png';
-import React, { useState } from "react";
+import "./hall-card.css";
+import arrow from "../../../images/assets/arrow.svg";
+import component from "../../../images/assets/component.svg";
+import locate from "../../../images/assets/locate.svg";
+import sched from "../../../images/assets/sched.svg";
+import hall from "../../../images/assets/hall.png";
+import pfp from "../../../images/assets/owner.png";
+import React, { useEffect, useState } from "react";
 import Schedule from "../schedule/Schedule.jsx";
 import MapLeaf from "../map/Map.jsx";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import weddingHalls from "../../../halls.js";
 
-
-
-
-const HallCard = ({ img, name, rating, location, description, price, services }) => {
+const HallCard = ({
+  img,
+  name,
+  rating,
+  location,
+  description,
+  price,
+  services,
+}) => {
   const [showBooking, setShowBooking] = useState(false);
   const [booked, setBooked] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
-
+  const [arrHalls, setArrHalls] = useState(weddingHalls);
   // Example booked days (from Schedule) - November 2025
   const scheduleBookedDays = [5, 12, 19];
-  const bookedDates = scheduleBookedDays.map(day => `2025-11-${String(day).padStart(2, '0')}`);
-
+  const bookedDates = scheduleBookedDays.map(
+    (day) => `2025-11-${String(day).padStart(2, "0")}`
+  );
+  const [currnetHall, setCurrentHall] = useState({});
   const handleBookClick = () => {
     if (!booked) setShowBooking(!showBooking);
   };
+
+  const params = useParams();
+  useEffect(() => {
+    const id = Number(params.id);
+    setCurrentHall(arrHalls.find(hall=>hall.id==id))
+  }, [params,arrHalls]);
+  console.log('current',currnetHall)
+  // console.log('id',id)
 
   const handleFromChange = (e) => {
     const date = e.target.value;
@@ -61,10 +77,9 @@ const HallCard = ({ img, name, rating, location, description, price, services })
     setBooked(true);
     setShowBooking(false);
   };
-  
 
   return (
-    <div style={{backgroundColor:'transparent'}}>
+    <div style={{ backgroundColor: "transparent" }}>
       <button className="back" onClick={() => window.history.back()}>
         <img src={arrow} className="arrow" alt="arrow" />
       </button>
@@ -81,7 +96,9 @@ const HallCard = ({ img, name, rating, location, description, price, services })
             <div className="service-tags">
               {services && services.length > 0 ? (
                 services.map((s, i) => (
-                  <span key={i} className="service-tag">{s}</span>
+                  <span key={i} className="service-tag">
+                    {s}
+                  </span>
                 ))
               ) : (
                 <>
@@ -103,7 +120,7 @@ const HallCard = ({ img, name, rating, location, description, price, services })
               <h2>Location</h2>
             </div>
             <div className="map">
-              <MapLeaf hallLat={36.689} hallLng={2.895}zoom={14} />
+              <MapLeaf hallLat={36.689} hallLng={2.895} zoom={14} />
             </div>
           </div>
 
@@ -121,7 +138,6 @@ const HallCard = ({ img, name, rating, location, description, price, services })
 
         {/* Hall Info */}
         <div className="hall-card-info">
-          
           <div className="image-holder">
             <div className="owner-pfp">
               <Link to="/profile">
@@ -129,7 +145,6 @@ const HallCard = ({ img, name, rating, location, description, price, services })
               </Link>
             </div>
 
-            
             <img src={hall} alt="main" className="main" />
             <img src={hall} alt="side2" className="small1" />
             <img src={hall} alt="side3" className="small2" />
@@ -138,10 +153,12 @@ const HallCard = ({ img, name, rating, location, description, price, services })
               <div className="see-more-overlay">See more</div>
             </div>
             {showPopup && (
-
-           <div className="popup" onClick={() => setShowPopup(false)}>
+              <div className="popup" onClick={() => setShowPopup(false)}>
                 <button className="close-popup">&times;</button>
-                <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+                <div
+                  className="popup-content"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <img src={hall} alt="1" />
                   <img src={hall} alt="2" />
                   <img src={hall} alt="3" />
@@ -154,15 +171,17 @@ const HallCard = ({ img, name, rating, location, description, price, services })
 
           <div className="hall-details">
             <div className="info-name">
-              <h2 className="hall-name">{name}</h2>
-              <p className="hall-rating">{rating}</p>
+              <h2 className="hall-name">{currnetHall.name}</h2>
+              <p className="hall-rating">{currnetHall.rate}</p>
             </div>
-            <p className="hall-location">{location}</p>
-            <p className="hall-description">{description}</p>
-            <p className="price">{price}</p>
+            <p className="hall-location">{currnetHall.location}</p>
+            <p className="hall-description">{currnetHall.description}</p>
+            <p className="price">{currnetHall.price} CENTIM</p>
 
             <button
-              className={`book-now-button ${booked ? "gray" : showBooking ? "active" : ""}`}
+              className={`book-now-button ${
+                booked ? "gray" : showBooking ? "active" : ""
+              }`}
               onClick={handleBookClick}
             >
               {booked ? "Booked" : showBooking ? "Booking..." : "Book Now"}

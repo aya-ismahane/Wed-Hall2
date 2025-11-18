@@ -12,17 +12,16 @@ import BarrNav from "./components/akramComponents/BarrNav/BarrNav";
 
 // this is importation of reda
 // import { Route, Routes } from 'react-router-dom';
-import MainLandingPage from './pages/redapages/MainLandingPage';
-import LogIn from './pages/redapages/LogIn';
+import MainLandingPage from "./pages/redapages/MainLandingPage";
+import LogIn from "./pages/redapages/LogIn";
 
-import LogIn2 from './pages/redapages/LogIn2';
-import LogIn3 from './pages/redapages/LogIn3';
-import Signupo from './pages/redapages/Signupo';
-
-import Signupc from './pages/redapages/Signupc';
-import Signupo2 from './pages/redapages/Signupo2';
-import Signupc2 from './pages/redapages/Signupc2';
-import Signupch from './pages/redapages/signupch';
+import LogIn2 from "./pages/redapages/LogIn2";
+import LogIn3 from "./pages/redapages/LogIn3";
+import Signupo from "./pages/redapages/Signupo";
+import Signupc from "./pages/redapages/Signupc";
+import Signupo2 from "./pages/redapages/Signupo2";
+import Signupc2 from "./pages/redapages/Signupc2";
+import Signupch from "./pages/redapages/signupch";
 
 // !-----------------------------------------------------------------
 
@@ -33,10 +32,13 @@ import HistoryPage from "./pages/Aishapages/HistoryPage";
 import profilePic from "./images/profilepic.jpg";
 // !this is the importation of aya
 import Halldesc from "./pages/Ayapages/Halldesc";
+import Topbar from "./components/AishaComponents/Topbar/Topbar";
+import Header from "./components/Ayacomponents/header/Header";
+import AboutUs from "./components/redacomponents/aboutus/AboutUs";
 
 function App() {
-  // !this are the variables used by akram 
-    const [isAuth, setIsAuth] = useState(true);
+  // !this are the variables used by akram
+  const [isAuth, setIsAuth] = useState(true);
   const [owner, setOwner] = useState({
     fullName: "Sophie Bennett",
     email: "sophie.bennett@gmail.com",
@@ -47,11 +49,13 @@ function App() {
   });
   const [myFavourite, setMyFavourite] = useState([]);
   const [favourite, setFavourite] = useState(false);
-// !--------------------------------------------------------------
+  // !--------------------------------------------------------------
   return (
     <div className="App">
       {/* ! this are the routes of akram */}
-      <BarrNav isAuth={isAuth} setIsAuth={setIsAuth} owner={owner} />
+      {/* <BarrNav isAuth={isAuth} setIsAuth={setIsAuth} owner={owner} /> */}
+      {/* <Topbar/> */}
+      <Header />
       <Routes>
         <Route
           path="/explore"
@@ -80,52 +84,30 @@ function App() {
           }
         ></Route>
         {/* <Route path="/filter" element={<Filter/>}></Route> */}
-        <Route path="/:id" element={<Halldesc/>}></Route>
+        <Route path="/:id" element={<Halldesc />}></Route>
 
+        {/* // this si root of reda */}
 
-
-{/* // this si root of reda */}
-
-
-                <Route path='/landingpage' element={<MainLandingPage/>}>
-
-      </Route>
-      <Route path='/login' element={<LogIn/>}>
-
-      </Route>
-      <Route path='/login2' element={<LogIn2/>}>
-
-      </Route>
-      <Route path='/login3' element={<LogIn3/>}>
-
-      </Route>
-      <Route path='/Signupo' element={<Signupo/>}>
-
-      </Route>
-      <Route path='/Signupc' element={<Signupc/>}>
-
-      </Route>
-      <Route path='/Signupo2' element={<Signupo2/>}>
-
-      </Route>
-      <Route path='/Signupc2' element={<Signupc2/>}>
-
-      </Route>
-      <Route path='/Signupch' element={<Signupch/>}>
-
-      </Route>
-      {/* <Route path='*' element={<Error/>}>
+        <Route path="/landingpage" element={<MainLandingPage />}></Route>
+        <Route path="/login" element={<LogIn />}></Route>
+        <Route path="/login2" element={<LogIn2 />}></Route>
+        <Route path="/login3" element={<LogIn3 />}></Route>
+        <Route path="/Signupo" element={<Signupo />}></Route>
+        <Route path="/Signupc" element={<Signupc />}></Route>
+        <Route path="/Signupo2" element={<Signupo2 />}></Route>
+        <Route path="/Signupc2" element={<Signupc2 />}></Route>
+        <Route path="/Signupch" element={<Signupch />}></Route>
+        {/* <Route path="/aboutUs" element={<AboutUs />}></Route> */}
+        {/* <Route path='*' element={<Error/>}>
 
       </Route> */}
 
         {/* Aisha routes */}
+
         <Route path="/profile" element={<Dashboard owner={owner} setOwner={setOwner} />} />
         <Route path="/Dashboard" element={<Dashboard owner={owner} setOwner={setOwner} />} />
         <Route path="/requests" element={<RequestsPage owner={owner} />} />
         <Route path="/history" element={<HistoryPage owner={owner} />} />
-
-
-
       </Routes>
       <Footer />
       {/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
