@@ -26,7 +26,7 @@ const WeddingCard = ({hall}) => {
         {hall.description}
         </Card.Text>
         {/* <Button class="booknow" variant="primary">Book Now</Button> */}
-        <button class="booknow">Book Now</button>
+        {/* <button class="booknow">Book Now</button> */}
 
 
 

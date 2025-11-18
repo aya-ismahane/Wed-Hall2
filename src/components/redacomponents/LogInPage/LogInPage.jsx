@@ -141,7 +141,7 @@ const LogInPage = () => {
         <p
           className="font3"
           style={{ cursor: "pointer" }}
-          onClick={() => navigate("/signup")}
+          onClick={() => navigate("/signupch")}
         >
           Register Now
         </p>
