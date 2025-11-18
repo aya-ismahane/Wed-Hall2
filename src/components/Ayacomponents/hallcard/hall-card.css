@@ -16,8 +16,9 @@
   max-width:100%;
   width: 100%;
   box-sizing: border-box;
-position: absolute;
- border-radius: 0;
+  position: absolute;
+  border-radius: 0;
+  margin-top: 4rem;
 }
 
 .footer-fluid{
@@ -27,7 +28,7 @@ position: absolute;
 
 .back {
   margin-left: -49%;  
-  margin-top:1.5rem;
+  margin-top:5rem;
   background: none;
   border: none;
   cursor: pointer;
@@ -121,6 +122,8 @@ position: absolute;
 
 .map {
   margin-top: 1.25rem;
+  border-radius: 2rem;
+  margin-bottom: -3rem;
 }
 
 .hall-card-info,
@@ -378,12 +381,12 @@ position: absolute;
   left: 0;
   min-width: 100vw;
   min-height: 100vh;
-  max-height: 1000vh;
+ 
   background: rgba(0,0,0,0.7);
-  
+  display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 909999990;
+  z-index: 9999999;
 }
 
 .popup-content {
