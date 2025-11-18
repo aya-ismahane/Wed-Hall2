@@ -77,98 +77,148 @@
 // export default SignupPagec2;
 
 
-import React, { useState } from "react";
-import "./SignupPagec2.css";
-import { useNavigate } from "react-router-dom";
-import { clients } from "../../../clients";
-import { owners } from "../../../owners";
 
-const SignupPagec2 = () => {
-  
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [arrclient] = useState(clients);
-  const [arrowner] = useState(owners);
 
-  const checkemailpassword = () => {
-    const e = email.trim();
-    const p = password.trim();
 
-    if (!p) {
-      return alert("password cannot be empty");
-    }
 
-    // example: require at least 6 chars (adjust as you like)
-    if (p.length < 6) {
-      return alert("password must be at least 6 characters");
-    }
 
-    if (!e) {
-      return alert("email cannot be empty");
-    }
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) {
-      return alert("invalid email");
-    }
 
-    const emailExists =
-      arrowner.some((owner) => owner.email === e) ||
-      arrclient.some((client) => client.email === e);
 
-    if (emailExists) {
-      return alert("this email address already has an account");
-    }
 
-    // proceed (consider saving user to list/state here)
-    navigate("/landingpage");
-  };
 
-  return (
-    <div className="logincontainer">
-      <img className="loginback" src="/back5.png" alt="background" />
-      <img className="logocomplet" src="/logo12.png" alt="logo" />
 
-      <div className="labels-container">
-        <p className="font0">WED HALL</p>
-        <p className="font1">Sign Up as a Client</p>
 
-        <label className="label">
-          <span className="label-text">email address:</span>
-          <input
-            className="input"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@example.com"
-          />
-        </label>
 
-        <label className="label">
-          <span className="label-text">Password:</span>
-          <input
-            className="input"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter password"
-          />
-        </label>
 
-        <button onClick={checkemailpassword} className="loginn">
-          Sign up
-        </button>
 
-        <p className="font3">you already have an account?</p>
-        <p onClick={() => navigate("/login")} className="font3">
-          Log In now
-        </p>
-      </div>
-    </div>
-  );
-};
 
-export default SignupPagec2;
+
+
+// import React, { useState } from "react";
+// import "./SignupPagec2.css";
+// import { useNavigate } from "react-router-dom";
+// import { clients } from "../../../clients";
+// import { owners } from "../../../owners";
+
+// const SignupPagec2 = () => {
+
+//   const navigate = useNavigate();
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [arrclient] = useState(clients);
+//   const [arrowner] = useState(owners);
+
+//   const checkemailpassword = () => {
+//     const e = email.trim();
+//     const p = password.trim();
+
+//     if (!p) {
+//       return alert("password cannot be empty");
+//     }
+
+//     // example: require at least 6 chars (adjust as you like)
+//     if (p.length < 6) {
+//       return alert("password must be at least 6 characters");
+//     }
+
+//     if (!e) {
+//       return alert("email cannot be empty");
+//     }
+
+//     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) {
+//       return alert("invalid email");
+//     }
+
+//     const emailExists =
+//       arrowner.some((owner) => owner.email === e) ||
+//       arrclient.some((client) => client.email === e);
+
+//     if (emailExists) {
+//       return alert("this email address already has an account");
+//     }
+
+//     // proceed (consider saving user to list/state here)
+//     navigate("/landingpage");
+//   };
+
+//   return (
+//     <div className="logincontainer">
+//       <img className="loginback" src="/back5.png" alt="background" />
+//       <img className="logocomplet" src="/logo12.png" alt="logo" />
+
+//       <div className="labels-container">
+//         <p className="font0">WED HALL</p>
+//         <p className="font1">Sign Up as a Client</p>
+
+//         <label className="label">
+//           <span className="label-text">email address:</span>
+//           <input
+//             className="input"
+//             type="email"
+//             value={email}
+//             onChange={(e) => setEmail(e.target.value)}
+//             placeholder="you@example.com"
+//           />
+//         </label>
+
+//         <label className="label">
+//           <span className="label-text">Password:</span>
+//           <input
+//             className="input"
+//             type="password"
+//             value={password}
+//             onChange={(e) => setPassword(e.target.value)}
+//             placeholder="Enter password"
+//           />
+//         </label>
+
+//         <button onClick={checkemailpassword} className="loginn">
+//           Sign up
+//         </button>
+
+//         <p className="font3">you already have an account?</p>
+//         <p onClick={() => navigate("/login")} className="font3">
+//           Log In now
+//         </p>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default SignupPagec2;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // import React, { useState } from "react";
@@ -293,3 +343,144 @@ export default SignupPagec2;
 // };
 
 // export default SignupPagec2;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React, { useState, useEffect } from "react";
+import "./SignupPagec2.css";
+import { useNavigate } from "react-router-dom";
+
+const SignupPagec2 = () => {
+  const navigate = useNavigate();
+
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [clients, setClients] = useState([]);
+
+  // Load existing clients from localStorage
+  useEffect(() => {
+    const storedClients = JSON.parse(localStorage.getItem("clients")) || [];
+    setClients(storedClients);
+  }, []);
+
+  const handleSignup = () => {
+    const n = name.trim();
+    const ph = phone.trim();
+    const e = email.trim();
+    const p = password.trim();
+
+    if (!n) return alert("Name cannot be empty");
+    if (!ph) return alert("Phone cannot be empty");
+    if (!/^\d{10}$/.test(ph)) return alert("Phone number must be 10 digits");
+    if (!e) return alert("Email cannot be empty");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) return alert("Invalid email");
+    if (!p) return alert("Password cannot be empty");
+    if (p.length < 6) return alert("Password must be at least 6 characters");
+
+    // Check if client with same email or phone already exists
+    if (clients.some(c => c.email === e || c.phone === ph)) {
+      return alert("This email or phone already has an account");
+    }
+
+    // Create new client object
+    const newClient = { name: n, phone: ph, email: e, password: p };
+    const updatedClients = [...clients, newClient];
+
+    // Save to state and localStorage
+    setClients(updatedClients);
+    localStorage.setItem("clients", JSON.stringify(updatedClients));
+
+    alert("Client account created successfully!");
+    navigate("/landingpage");
+  };
+
+  return (
+
+    
+    <div className="logincontainer">
+
+
+      
+      <div className="labels-container">
+        <p className="font1">Sign Up as a Client</p>
+
+        <label className="label">
+          <span className="label-text">Full Name:</span>
+          <input
+            className="input"
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+        </label>
+
+        <label className="label">
+          <span className="label-text">Phone Number:</span>
+          <input
+            className="input"
+            value={phone}
+            onChange={e => setPhone(e.target.value)}
+          />
+        </label>
+
+        <label className="label">
+          <span className="label-text">Email:</span>
+          <input
+            className="input"
+            type="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+        </label>
+
+        <label className="label">
+          <span className="label-text">Password:</span>
+          <input
+            className="input"
+            type="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+        </label>
+
+        <button onClick={handleSignup} className="loginn">
+          Sign Up
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default SignupPagec2;
