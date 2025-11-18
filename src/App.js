@@ -30,6 +30,8 @@ import Dashboard from "./pages/Aishapages/Dashboard";
 import RequestsPage from "./pages/Aishapages/RequestsPage";
 import HistoryPage from "./pages/Aishapages/HistoryPage";
 import profilePic from "./images/profilepic.jpg";
+// !this is the importation of aya
+import Halldesc from "./pages/Ayapages/Halldesc";
 
 function App() {
   // !this are the variables used by akram 
@@ -77,7 +79,7 @@ function App() {
           }
         ></Route>
         {/* <Route path="/filter" element={<Filter/>}></Route> */}
-        <Route path="/:id"></Route>
+        <Route path="/:id" element={<Halldesc/>}></Route>
 
 
 

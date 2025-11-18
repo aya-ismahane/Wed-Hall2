@@ -1,8 +1,8 @@
 import React from "react";
-import Header from "../AyaComponents/Header/Header";
-import HallCard from "../AyaComponents/HallCard/HallCard"; 
+import Header from "../../components/Ayacomponents/header/Header";
+import HallCard from "../../components/Ayacomponents/hallcard/hall-card"; 
 import "leaflet/dist/leaflet.css";
-import hallImg from "../assets/hall.png";
+import hallImg from "../../images/assets/hall.png";
 
 const hall = {
   name: "Layalina",
@@ -16,10 +16,10 @@ const hall = {
 
 const Halldesc = () => {
   return (
-    <>
+    <div style={{backgroundColor:'black'}}>
       <Header />
       <HallCard {...hall} />
-    </>
+    </div>
   );
 };
 

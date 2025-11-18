@@ -1,10 +1,10 @@
 import './hall-card.css';
-import arrow from '../assets/arrow.svg';
-import component from '../assets/component.svg';
-import locate from '../assets/locate.svg';
-import sched from '../assets/sched.svg';
-import hall from '../assets/hall.png';
-import pfp from '../assets/owner.png';
+import arrow from '../../../images/assets/arrow.svg';
+import component from '../../../images/assets/component.svg';
+import locate from '../../../images/assets/locate.svg';
+import sched from '../../../images/assets/sched.svg';
+import hall from '../../../images/assets/hall.png';
+import pfp from '../../../images/assets/owner.png';
 import React, { useState } from "react";
 import Schedule from "../schedule/Schedule.jsx";
 import MapLeaf from "../map/Map.jsx";
@@ -59,7 +59,7 @@ const HallCard = ({ img, name, rating, location, description, price, services })
   };
 
   return (
-    <>
+    <div style={{backgroundColor:'transparent'}}>
       <button className="back" onClick={() => window.history.back()}>
         <img src={arrow} className="arrow" alt="arrow" />
       </button>
@@ -190,7 +190,7 @@ const HallCard = ({ img, name, rating, location, description, price, services })
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
