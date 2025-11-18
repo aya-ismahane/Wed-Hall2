@@ -26,7 +26,7 @@ position: absolute;
 
 
 .back {
-  margin-left: -41rem;  
+  margin-left: -49%;  
   margin-top:1.5rem;
   background: none;
   border: none;
@@ -245,7 +245,7 @@ position: absolute;
 .hall-location {
   font-size: 0.95rem;
   color: #777;
-  margin-left: -37rem;
+  margin-left: -88%;
 
 }
 
@@ -261,7 +261,9 @@ position: absolute;
   color: #444;
   line-height: 1.5;
   margin: 0.3125rem 0 0.625rem;
+  margin-left: 0;
   width: 100%;
+  text-align: justify;
   
 }
 
@@ -574,6 +576,12 @@ position: absolute;
   
 }
 
+.popup-content{
+  min-height: 100vw;
+  min-width: 100vh;
+  overflow-y: auto;
+  margin-top:-20rem;
+}
 
   .popup-content img {
     width: 100%;
