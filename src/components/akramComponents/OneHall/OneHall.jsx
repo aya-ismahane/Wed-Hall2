@@ -26,7 +26,7 @@ const OneHall = ({ hall, isAuth, setIsAuth, myFavourite, setMyFavourite }) => {
       <Card className="Card">
         <Card.Img
           variant="top"
-          src={hall.image}
+          src={hall.image[0]}
           style={{ height: "200px" }}
           className="image"
         />
