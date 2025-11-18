@@ -1,44 +1,113 @@
+/* Main filter container */
 .filter {
-  /* background-color: black !important; */
-  /* display: flex;
-  justify-content: space-around; */
-  /* margin: 1rem; */
-}
-.inside-filter {
-  /* background-color: aqua; */
   display: flex;
-  justify-content: space-around;
-  background-color: #c8a891;
+  justify-content: center;
   padding: 1rem;
-  width: 30vw;
-}
-.toggle {
-  height: 100%;
-  background-color: transparent;
-  border: none;
+  background-color: #9D735B;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.toggle:hover {
-  height: 100% !important;
-  background-color: transparent !important;
-  border: none !important;
+/* Inner container for spacing dropdowns */
+.inside-filter {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
-.filter-btn {
+
+/* Dropdown toggle button */
+.toggle {
+  background-color: transparent; /* Keep your original background */
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: none; /* remove hover/focus effect */
+}
+
+/* Remove hover, focus, and active effects completely */
+/* Fix the blue focus on Dropdown button */
+.toggle,
+.dropdown-toggle:focus,
+.dropdown-toggle:active,
+.dropdown-toggle:focus-visible {
+  background-color:#9D735B !important; /* keep original color */
+  color: #fff !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important; /* remove default blue shadow */
+}
+
+
+/* Dropdown menu styling */
+.dropdown-menu {
+  border-radius: 10px;
+  padding: 0.5rem 0;
+  min-width: 200px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Dropdown items */
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+/* Hover for dropdown items only */
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: #9D735B;
+  color: #fff;
+}
+
+/* Selected item highlighting */
+.dropdown-item.selected {
+  background-color: #b87b5c;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Date inputs inside dropdown */
+.date-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1rem;
+}
+
+.date-container label {
+  margin-bottom: 4px;
+  font-size: 0.85rem;
+  color: #333;
 }
 
 .dateperiod {
-  border: none;
-  margin: 8px;
-  padding: 5px;
-  display: inline;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .dateperiod:focus {
-  border: none !important;
+  border: 1px solid #d9b38c;
+  box-shadow: 0 0 4px rgba(217, 179, 140, 0.6);
 }
-.date-container {
-  /* background-color: black; */
-  display: flex;
-  padding-left: 1rem;
-  /* align-items: center; */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .inside-filter {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .filter {
+    width: 95%;
+    padding: 0.8rem;
+  }
 }

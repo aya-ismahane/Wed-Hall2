@@ -43,7 +43,7 @@ function RequestsPage({ owner }) {
 
   return (
     <div className="app-container">
-      <Topbar owner={owner} />
+      {/* <Topbar owner={owner} /> */}
       <div className="dashboard requests-history">
         <div className="table-section">
           <div className="table-header">

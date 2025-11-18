@@ -1,11 +1,11 @@
-import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../App.css';
-import Landingpage from '../../components/redacomponents/landingpage/Landingpage';
-import CardGroup from '../../components/redacomponents/ourservices/CardGroup';
-import WeddingHall from '../../components/redacomponents/WeddingHall/WeddingHall';
-import AboutUs from '../../components/redacomponents/aboutus/AboutUs';
-import Testimonials from '../../components/redacomponents/OurClients/Testimonials';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../../App.css";
+import Landingpage from "../../components/redacomponents/landingpage/Landingpage";
+import CardGroup from "../../components/redacomponents/ourservices/CardGroup";
+import WeddingHall from "../../components/redacomponents/WeddingHall/WeddingHall";
+import AboutUs from "../../components/redacomponents/aboutus/AboutUs";
+import Testimonials from "../../components/redacomponents/OurClients/Testimonials";
 // import Landingpage from './components/landingpage/Landingpage';
 // import CardGroup from './components/ourservices/CardGroup';
 // import WeddingHall from './components/WeddingHall/WeddingHall';
@@ -21,13 +21,15 @@ import Testimonials from '../../components/redacomponents/OurClients/Testimonial
 const MainLandingPage = () => {
   return (
     <div>
-         <Landingpage/>
-    <CardGroup/>
-    <WeddingHall/>
-    <AboutUs/>
-    <Testimonials/>
+      <Landingpage />
+      <CardGroup />
+      <WeddingHall />
+      <div id="aboutus">
+        <AboutUs />
+      </div>
+      <Testimonials />
     </div>
-  )
-}
+  );
+};
 
-export default MainLandingPage
+export default MainLandingPage;

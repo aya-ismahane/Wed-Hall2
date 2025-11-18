@@ -73,7 +73,7 @@ function Dashboard({ owner, setOwner }) {
 
   return (
     <div className="app-container">
-      <Topbar owner={safeOwner} />
+      {/* <Topbar owner={safeOwner} /> */}
       <div className="dashboard">
         <div className="Owner-section">
           <OwnerProfileCard owner={safeOwner} onEdit={() => setIsEditing(true)} />

@@ -1,6 +1,6 @@
 .container-viewhalls {
   /* background-color: blue; */
-  margin-top: 4rem;
+  margin-top: 7rem !important;
   min-height: 70vh !important;
 }
 
@@ -21,6 +21,7 @@
     border-radius: 10px;
     border: none;
     background-color: #c8a8914c;
+    color: #9d735b;
     width: 45vw !important;
     height: 3rem;
     /* margin-left: 10px; */
