@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-const EditHallPopup = ({ hall, onClose, onSubmit, loading }) => {
+const AddHallPopup = ({ onClose, onSubmit, loading }) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
+  const [imagesStr, setImagesStr] = useState("");
+  const [lat, setLat] = useState("");
+  const [lng, setLng] = useState("");
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    if (hall) {
-      setName(hall.name || "");
-      setPrice(hall.price != null ? String(hall.price) : "");
-      setDescription(hall.description || "");
-    }
-  }, [hall]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,15 +17,16 @@ const EditHallPopup = ({ hall, onClose, onSubmit, loading }) => {
       setError("Hall name is required");
       return;
     }
+    const images = imagesStr.trim() ? imagesStr.trim().split(/\s+/).filter(Boolean) : [];
     onSubmit({
-      hall_id: hall.id,
       name: n,
-      price: price.trim() ? Number(price) : null,
-      description: description.trim() || null,
+      price: price.trim() ? Number(price) : 0,
+      description: description.trim(),
+      images,
+      lat: lat.trim() ? Number(lat) : 0,
+      lng: lng.trim() ? Number(lng) : 0,
     });
   };
-
-  if (!hall) return null;
 
   return (
     <div
@@ -55,9 +51,11 @@ const EditHallPopup = ({ hall, onClose, onSubmit, loading }) => {
           borderRadius: "8px",
           width: "100%",
           maxWidth: "440px",
+          maxHeight: "90vh",
+          overflow: "auto",
         }}
       >
-        <h3 style={{ marginTop: 0 }}>Edit Hall</h3>
+        <h3 style={{ marginTop: 0 }}>Add Hall</h3>
         <form onSubmit={handleSubmit}>
           <div style={{ marginBottom: "12px" }}>
             <label>Name *</label>
@@ -66,6 +64,7 @@ const EditHallPopup = ({ hall, onClose, onSubmit, loading }) => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               style={{ width: "100%", padding: "8px", marginTop: "4px" }}
+              placeholder="Hall name"
             />
           </div>
           <div style={{ marginBottom: "12px" }}>
@@ -75,6 +74,7 @@ const EditHallPopup = ({ hall, onClose, onSubmit, loading }) => {
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               style={{ width: "100%", padding: "8px", marginTop: "4px" }}
+              placeholder="0"
               min="0"
             />
           </div>
@@ -84,7 +84,41 @@ const EditHallPopup = ({ hall, onClose, onSubmit, loading }) => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               style={{ width: "100%", padding: "8px", marginTop: "4px", minHeight: "80px" }}
+              placeholder="Brief description"
             />
+          </div>
+          <div style={{ marginBottom: "12px" }}>
+            <label>Image URLs (one per line or space-separated)</label>
+            <textarea
+              value={imagesStr}
+              onChange={(e) => setImagesStr(e.target.value)}
+              style={{ width: "100%", padding: "8px", marginTop: "4px", minHeight: "60px" }}
+              placeholder="https://..."
+            />
+          </div>
+          <div style={{ display: "flex", gap: "12px", marginBottom: "12px" }}>
+            <div style={{ flex: 1 }}>
+              <label>Latitude</label>
+              <input
+                type="number"
+                step="any"
+                value={lat}
+                onChange={(e) => setLat(e.target.value)}
+                style={{ width: "100%", padding: "8px", marginTop: "4px" }}
+                placeholder="e.g. 36.75"
+              />
+            </div>
+            <div style={{ flex: 1 }}>
+              <label>Longitude</label>
+              <input
+                type="number"
+                step="any"
+                value={lng}
+                onChange={(e) => setLng(e.target.value)}
+                style={{ width: "100%", padding: "8px", marginTop: "4px" }}
+                placeholder="e.g. 3.05"
+              />
+            </div>
           </div>
           {error && <p style={{ color: "red", marginBottom: "8px" }}>{error}</p>}
           <div style={{ display: "flex", justifyContent: "flex-end", gap: "8px" }}>
@@ -92,7 +126,7 @@ const EditHallPopup = ({ hall, onClose, onSubmit, loading }) => {
               Cancel
             </button>
             <button type="submit" disabled={loading} style={{ padding: "8px 16px", background: "#007bff", color: "#fff", border: "none", borderRadius: "4px", cursor: "pointer" }}>
-              {loading ? "Saving..." : "Save"}
+              {loading ? "Adding..." : "Add Hall"}
             </button>
           </div>
         </form>
@@ -101,4 +135,4 @@ const EditHallPopup = ({ hall, onClose, onSubmit, loading }) => {
   );
 };
 
-export default EditHallPopup;
+export default AddHallPopup;

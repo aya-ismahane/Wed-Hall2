@@ -10,14 +10,14 @@ const Rating = ({ isAuth, setIsAuth }) => {
   return (
     <div>
       {isAuth ? (
-        <Flex gap="middle" vertica className="rate" l>
+        <Flex gap="middle" vertical className="rate">
           <Rate tooltips={desc} onChange={setValue} value={value} />
           {/* {value ? <span>{desc[value - 1]}</span> : null} */}
         </Flex>
       ) : (
         <>
-          <Flex gap="middle" vertica className="rate" l>
-            <Rate onChange={setValue} value={value} disabled/>
+          <Flex gap="middle" vertical className="rate">
+            <Rate onChange={setValue} value={value} disabled />
             {/* {value ? <span>{desc[value - 1]}</span> : null} */}
           </Flex>
         </>

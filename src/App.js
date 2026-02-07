@@ -1,20 +1,13 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-// !this is the importation of Akram
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
+import { useAuth } from "./context/AuthContext";
+
+// Pages
 import ViewHalls from "./pages/akramPages/viewHalls/ViewHalls";
 import MyBooking from "./pages/akramPages/MyBookings/MyBookings";
-import { useState } from "react";
-// import Footer from "./components/akramComponents/Footer/Footer";
-// import Filter from "./components/akramComponents/filter/Filter";
-import BarrNav from "./components/akramComponents/BarrNav/BarrNav";
-// !-----------------------------------------------------------------
-
-// this is importation of reda
-// import { Route, Routes } from 'react-router-dom';
 import MainLandingPage from "./pages/redapages/MainLandingPage";
 import LogIn from "./pages/redapages/LogIn";
-
 import LogIn2 from "./pages/redapages/LogIn2";
 import LogIn3 from "./pages/redapages/LogIn3";
 import Signupo from "./pages/redapages/Signupo";
@@ -22,104 +15,133 @@ import Signupc from "./pages/redapages/Signupc";
 import Signupo2 from "./pages/redapages/Signupo2";
 import Signupc2 from "./pages/redapages/Signupc2";
 import Signupch from "./pages/redapages/signupch";
-
-// !-----------------------------------------------------------------
-
-// ---------------------Aisha's imports-----------------------------------------
-import Dashboard from "./pages/Aishapages/Dashboard";
+import OwnerProfilePage from "./pages/Aishapages/OwnerProfilePage";
+import Profile from "./pages/akramPages/Profile/Profile";
 import RequestsPage from "./pages/Aishapages/RequestsPage";
 import HistoryPage from "./pages/Aishapages/HistoryPage";
-import profilePic from "./images/profilepic.jpg";
-// !this is the importation of aya
 import Halldesc from "./pages/Ayapages/Halldesc";
+
+
+// Components
 import Topbar from "./components/AishaComponents/Topbar/Topbar";
 import Header from "./components/Ayacomponents/header/Header";
-import AboutUs from "./components/redacomponents/aboutus/AboutUs";
 import Footer from "./components/akramComponents/Footer/Footer";
+import { useEffect, useState } from "react";
 
+// Protected Route Component
+const ProtectedRoute = ({ children, requiredRole }) => {
+  const { user, role, loading } = useAuth();
+
+  if (loading) {
+    return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>Loading...</div>;
+  }
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (requiredRole && role !== requiredRole) {
+    return <Navigate to="/landingpage" replace />;
+  }
+
+  return children;
+};
 function App() {
-  // !this are the variables used by akram
-  const [isAuth, setIsAuth] = useState(true);
-  const [owner, setOwner] = useState({
-    fullName: "Sophie Bennett",
-    email: "sophie.bennett@gmail.com",
-    wilaya: "Algiers",
-    phoneNum: "0546789843",
-    picture:
-      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-  });
+  const location = useLocation();
+  const { role } = useAuth();
+
   const [myFavourite, setMyFavourite] = useState([]);
   const [favourite, setFavourite] = useState(false);
-  // !--------------------------------------------------------------
-    const location = useLocation();
-      const shouldShowFooter = !/^\/\d+$/.test(location.pathname);
+  const [isAuth, setIsAuth] = useState(true);
+
+  // Determine which header to show
+  const isOwnerRoute = location.pathname.startsWith('/requests') ||
+    location.pathname.startsWith('/history') ||
+    location.pathname.startsWith('/profile');
+
+  const shouldShowFooter = !/^\/\d+$/.test(location.pathname) && !isOwnerRoute;
+
   return (
     <div className="App">
-      {/* ! this are the routes of akram */}
-      {/* <BarrNav isAuth={isAuth} setIsAuth={setIsAuth} owner={owner} /> */}
-      {/* <Topbar/> */}
-      <Header />
+      {/* Conditional Header Rendering */}
+      {isOwnerRoute && role === 'owner' ? <Topbar /> : <Header />}
+
       <Routes>
+        {/* Public Routes */}
+        <Route path="/landingpage" element={<MainLandingPage />} />
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/login2" element={<LogIn2 />} />
+        <Route path="/login3" element={<LogIn3 />} />
+        <Route path="/Signupo" element={<Signupo />} />
+        <Route path="/Signupc" element={<Signupc />} />
+        <Route path="/Signupo2" element={<Signupo2 />} />
+        <Route path="/Signupc2" element={<Signupc2 />} />
+        <Route path="/Signupch" element={<Signupch />} />
+
+        {/* Hall Exploration (Public) */}
         <Route
           path="/explore"
           element={
             <ViewHalls
               isAuth={isAuth}
-              setIsAuth={isAuth}
+              setIsAuth={setIsAuth}
               myFavourite={myFavourite}
               setMyFavourite={setMyFavourite}
               favourite={favourite}
               setFavourite={setFavourite}
-              // isAuth={isAuth}
             />
           }
-        ></Route>
+        />
+
+        {/* Profile and protected routes must come before /:id so "profile" isn't matched as a hall id */}
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              {role === 'owner' ? <OwnerProfilePage /> : <Profile />}
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Owner Protected Routes */}
+        <Route
+          path="/requests"
+          element={
+            <ProtectedRoute requiredRole="owner">
+              <RequestsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/history"
+          element={
+            <ProtectedRoute requiredRole="owner">
+              <HistoryPage />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Client Protected Routes */}
         <Route
           path="/mybooking"
           element={
-            <MyBooking
-              owner={owner}
-              setOwner={setOwner}
-              setMyFavourite={setMyFavourite}
-              myFavourite={myFavourite}
-              // onEdit={() => setIsEditing(true)}
-            />
+            <ProtectedRoute requiredRole="client">
+              <MyBooking
+                setMyFavourite={setMyFavourite}
+                myFavourite={myFavourite}
+              />
+            </ProtectedRoute>
           }
-        ></Route>
-        {/* <Route path="/filter" element={<Filter/>}></Route> */}
-        <Route path="/:id" element={<Halldesc />}></Route>
-
-        {/* // this si root of reda */}
-
-        <Route path="/landingpage" element={<MainLandingPage />}></Route>
-        <Route path="/login" element={<LogIn />}></Route>
-        <Route path="/login2" element={<LogIn2 />}></Route>
-        <Route path="/login3" element={<LogIn3 />}></Route>
-        <Route path="/Signupo" element={<Signupo />}></Route>
-        <Route path="/Signupc" element={<Signupc />}></Route>
-        <Route path="/Signupo2" element={<Signupo2 />}></Route>
-        <Route path="/Signupc2" element={<Signupc2 />}></Route>
-        <Route path="/Signupch" element={<Signupch />}></Route>
-        {/* <Route path="/aboutUs" element={<AboutUs />}></Route> */}
-        {/* <Route path='*' element={<Error/>}>
-
-      </Route> */}
-
-        {/* Aisha routes */}
-
-        <Route
-          path="/profile"
-          element={<Dashboard owner={owner} setOwner={setOwner} />}
         />
-        <Route
-          path="/Dashboard"
-          element={<Dashboard owner={owner} setOwner={setOwner} />}
-        />
-        <Route path="/requests" element={<RequestsPage owner={owner} />} />
-        <Route path="/history" element={<HistoryPage owner={owner} />} />
+
+        {/* Hall Details (Public but booking requires auth) - must be after all fixed paths like /profile */}
+        <Route path="/:id" element={<Halldesc />} />
+
+        {/* Default redirect */}
+        <Route path="/" element={<Navigate to="/landingpage" replace />} />
       </Routes>
-     {shouldShowFooter && <Footer />}
-      {/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
+
+      {shouldShowFooter && <Footer />}
     </div>
   );
 }

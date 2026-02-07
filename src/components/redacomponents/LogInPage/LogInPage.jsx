@@ -1,74 +1,16 @@
-// import React from "react";
-// import "./LogInPage.css";
-// import { useNavigate } from "react-router-dom";
-
-// // si les images sont dans src, tu peux aussi les importer:
-// // import back from "./back5.png";
-// // import logo from "./logo11.png";
-
-// const LogInPage = () => {
-//   const navigate = useNavigate();
-//   return (
-  
-    
-//     <div className="logincontainer">
-
-//       {/* Si images dans public: src="/back5.png" ; si importées : src={back} */}
-
-
-//       <img className="loginback" src="/back5.png" alt="background" />
-//       <img className="logocomplet" src="/logo12.png" alt="logo" />
-
-
-
-//       <div className="labels-container">
-//         <p className="font0">WED HALL</p>
-//         <p className="font1">LOG IN</p>
-
-//         <label className="label">
-//           <span className="label-text">Username:</span>
-//           <input className="input" type="text" />
-//         </label>
-
-//         <label className="label">
-//           <span className="label-text">Password:</span>
-//           <input className="input" type="password" />
-//         </label>
-
-//         <p style={{ cursor: "pointer" }} onClick={() => navigate("/login2")} className="font3">Forgot Password?</p>
-        
-
-        
-
-//         <button className="loginn"  onClick={() => navigate("/Landingpage")}>Login</button>
-//         <p className="font3">Don't have an account?</p>
-//         <p className="font3">Register Now</p>
-
-
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default LogInPage;
-
-
 import React, { useState } from "react";
 import "./LogInPage.css";
 import { useNavigate } from "react-router-dom";
-import { clients } from "../../../clients";
-import { owners } from "../../../owners";
+import { useAuth } from "../../../context/AuthContext";
 
 const LogInPage = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [arrclient] = useState(clients || []);
-  const [arrowner] = useState(owners || []);
-
-  const handleLogin = () => {
+  const handleLogin = async () => {
     const e = email.trim();
     const p = password.trim();
 
@@ -78,20 +20,19 @@ const LogInPage = () => {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e))
       return alert("invalid email format");
 
-    // look for email in both lists
-    const client = arrclient.find((c) => c.email === e);
-    const owner = arrowner.find((o) => o.email === e);
+    // Call API login
+    const result = await login(e, p);
 
-    const user = client || owner;
-
-    if (!user) return alert("No account found with this email");
-
-    // check password (make sure your objects store passwords!)
-    if (user.password !== p)
-      return alert("Incorrect password");
-
-    // Login success
-    navigate("/landingpage");
+    if (result.success) {
+      const { role } = result;
+      if (role === 'owner') {
+        navigate("/profile");
+      } else {
+        navigate("/landingpage");
+      }
+    } else {
+      alert(result.error || "Login failed");
+    }
   };
 
   return (

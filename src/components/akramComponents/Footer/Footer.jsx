@@ -67,7 +67,7 @@ const Footer = () => {
             display: "flex",
             // flexDirection: "column",
             // backgroundColor:'black',
-            justifyContent:'space-around'
+            justifyContent: 'space-around'
             // backgroundColor: "red",
           }}
         >
@@ -78,10 +78,10 @@ const Footer = () => {
               OUR periority {" "}
             </p>{" "}
             <p className="icons">
-              <i class="fa-brands fa-linkedin-in fa-lg"></i>
-              <i class="fa-brands fa-twitter fa-lg"></i>
-              <i class="fa-brands fa-facebook-messenger fa-lg"></i>
-              <i class="fa-brands fa-telegram fa-lg"></i>{" "}
+              <i className="fa-brands fa-linkedin-in fa-lg"></i>
+              <i className="fa-brands fa-twitter fa-lg"></i>
+              <i className="fa-brands fa-facebook-messenger fa-lg"></i>
+              <i className="fa-brands fa-telegram fa-lg"></i>{" "}
             </p>{" "}
           </div>{" "}
           <div >

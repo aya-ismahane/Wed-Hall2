@@ -1,180 +1,62 @@
 .topbar {
-  display: flex;
-    position: sticky;
-  top: 0;
-  z-index: 999;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 28px;
-  background-color: #9D735B;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #333;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* ===== Left section (Logo) ===== */
-.topbar-left .logo {
-  width: 100%;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Dancing Script', cursive;
+.logo h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
 }
 
-.topbar-left .logo a{
-  color: #fff8f8;
-  font-size: 40px;
-  font-weight: 300;
-  text-decoration: none;
-  letter-spacing: 2px;
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
-/* ===== Right section ===== */
-.topbar-right {
-  display: flex;
-  align-items: center;
-  gap: 24px;
+.nav-links a {
+    text-decoration: none;
+    color: #e0e0e0;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
-/* ===== Navbar ===== */
-.navbar {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.nav-links a:hover {
+    color: #fff;
 }
 
-.nav-item a{
-  background: none;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: bold;
-  color: rgba(255, 255, 255, 0.906);
-  cursor: pointer;  
-  padding: 10px 15px;
-  border-radius: 30px;
-  transition: color 0.3s ease;
+.nav-links button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
 }
 
-.nav-item a:hover {
-  background: #f5f5dc32;
+.nav-links button:hover {
+    background-color: #c82333;
 }
 
-/* ===== User area (avatar + name) ===== */
-.user-area {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.topbar-img {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1.5px solid #a58469;
-}
-
-.user-text h4 {
-  font-size: 13px;
-  color: #fff8f8;
-  margin-top: 10px;
-  margin-bottom: 0;
-}
-
-.user-text p {
-  font-size: 12px;
-  font-weight: 400;
-  color: #0000009f;
-  margin: 0;
-}
-
-/* === Logout Confirmation Popup === */
-.logout-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 3000;
-  animation: fadeIn 0.25s ease;
-}
-
-.logout-box {
-  background: #fff;
-  border-radius: 12px;
-  padding: 24px 30px;
-  max-width: 360px;
-  text-align: center;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  animation: fadeIn 0.25s ease;
-}
-
-.logout-box h4 {
-  color: #825e39;
-  margin-bottom: 10px;
-  font-size: 1.2rem;
-}
-
-.logout-box p {
-  color: #4a3a2a;
-  margin-bottom: 20px;
-}
-
-.logout-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-
-.logout-buttons .yes {
-  background: #e74c3c;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-.logout-buttons .yes:hover {
-  background: #c0392b;
-}
-
-.logout-buttons .no {
-  background: #ddd;
-  color: #333;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-/* === Log Out button styled like other nav items === */
-.logout-btn {
-  background: none;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: bold;
-  color: rgba(255, 255, 255, 0.906);
-  cursor: pointer;
-  padding: 10px 15px;
-  border-radius: 30px;
-  transition: background 0.3s ease;
-  display: inline-block;
-}
-
-.logout-btn:hover {
-  background: #f5f5dc32; /* same hover as nav-item a:hover */
-}
-
-.logout-btn:hover {
-  color: #c0392b;
-}
-
-/* Reuse fadeIn animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+@media (max-width: 768px) {
+    .topbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 1rem;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }

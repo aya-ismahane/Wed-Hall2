@@ -1,31 +1,44 @@
-import React, { useState, useMemo } from "react";
-import Topbar from "../../components/AishaComponents/Topbar/Topbar";
+import React, { useState, useMemo, useEffect, useCallback } from "react";
 import "./RequestsHistory.css";
-import { useRequests } from "../../context/RequestsProvider";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faSort } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "../../context/AuthContext";
 
-function HistoryPage({ owner }) {
-  const { history } = useRequests();
-
-  // --- State for search & sorting ---
+function HistoryPage() {
+  const { user, API_BASE } = useAuth();
+  const [history, setHistory] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
 
-  // --- Sorting Handler ---
+  const fetchHistory = useCallback(async () => {
+    if (!user?.id || !API_BASE) return;
+    try {
+      const res = await fetch(`${API_BASE}/aishaWork/ownerHistory.php?owner_id=${user.id}`, { credentials: "include" });
+      const data = await res.json();
+      if (data.status === "success" && Array.isArray(data.history)) {
+        setHistory(data.history);
+      } else {
+        setHistory([]);
+      }
+    } catch (err) {
+      console.error("Failed to fetch history", err);
+      setHistory([]);
+    } finally {
+      setLoading(false);
+    }
+  }, [user?.id, API_BASE]);
+
+  useEffect(() => {
+    fetchHistory();
+  }, [fetchHistory]);
+
   const handleSort = (key) => {
     let direction = "asc";
-    if (sortConfig.key === key && sortConfig.direction === "asc") {
-      direction = "desc";
-    }
+    if (sortConfig.key === key && sortConfig.direction === "asc") direction = "desc";
     setSortConfig({ key, direction });
   };
 
-  // --- Filtering & Sorting ---
   const filteredHistory = useMemo(() => {
     let data = [...history];
-
-    // Search filter
     if (searchTerm.trim() !== "") {
       data = data.filter((item) =>
         Object.values(item)
@@ -34,25 +47,30 @@ function HistoryPage({ owner }) {
           .includes(searchTerm.toLowerCase())
       );
     }
-
-    // Sorting logic
     if (sortConfig.key) {
       data.sort((a, b) => {
-        if (a[sortConfig.key] < b[sortConfig.key])
-          return sortConfig.direction === "asc" ? -1 : 1;
-        if (a[sortConfig.key] > b[sortConfig.key])
-          return sortConfig.direction === "asc" ? 1 : -1;
+        const aVal = a[sortConfig.key];
+        const bVal = b[sortConfig.key];
+        if (aVal < bVal) return sortConfig.direction === "asc" ? -1 : 1;
+        if (aVal > bVal) return sortConfig.direction === "asc" ? 1 : -1;
         return 0;
       });
     }
-
     return data;
   }, [history, searchTerm, sortConfig]);
 
+  if (loading) {
+    return (
+      <div className="app-container">
+        <div className="dashboard requests-history">
+          <p className="empty-msg">Loading history...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="app-container">
-      {/* <Topbar owner={owner} /> */}
-
       <div className="dashboard requests-history">
         <div className="table-section">
           <div className="table-header">
@@ -66,28 +84,11 @@ function HistoryPage({ owner }) {
             />
           </div>
 
-          {/* === Table === */}
           {filteredHistory.length === 0 ? (
             <p className="empty-msg">No history found.</p>
           ) : (
             <div className="table-wrapper">
               <table className="styled-table">
-                {/* <thead>
-                  <tr>
-                    <th onClick={() => handleSort("client")}>
-                      Client <FontAwesomeIcon icon={faSort} className="sort-icon" />
-                    </th>
-                    <th onClick={() => handleSort("hall")}>
-                      Hall <FontAwesomeIcon icon={faSort} className="sort-icon" />
-                    </th>
-                    <th onClick={() => handleSort("from")}>
-                      Period <FontAwesomeIcon icon={faSort} className="sort-icon" />
-                    </th>
-                    <th onClick={() => handleSort("status")}>
-                      Status <FontAwesomeIcon icon={faSort} className="sort-icon" />
-                    </th>
-                  </tr>
-                </thead> */}
                 <tbody>
                   {filteredHistory.map((h) => (
                     <tr key={h.id}>

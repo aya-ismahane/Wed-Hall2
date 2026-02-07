@@ -1,21 +1,42 @@
-// import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Rating from "../Rating/Rating";
 import "./OneHall.css";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-const OneHall = ({ hall, isAuth, setIsAuth, myFavourite, setMyFavourite }) => {
-  // const [favourite, setFavourite] = useState(false);
+
+const OneHall = ({ hall, isAuth, setIsAuth, myFavourite, setMyFavourite, API_BASE, user, userRole }) => {
   const isFav = myFavourite.some((item) => item.id === hall.id);
 
-  const toggleFavourite = () => {
-    if (isFav) {
-      // remove from favourites
-      setMyFavourite(myFavourite.filter((item) => item.name !== hall.name));
-    } else {
-      // add to favourites
-      setMyFavourite([...myFavourite, hall]);
+  const toggleFavourite = async () => {
+    if (userRole !== "client" || !user?.id || !API_BASE) {
+      setMyFavourite(isFav ? myFavourite.filter((item) => item.id !== hall.id) : [...myFavourite, hall]);
+      return;
+    }
+    try {
+      if (isFav) {
+        const res = await fetch(`${API_BASE}/akramWork/deleteFromFavourite.php`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ client_id: user.id, hall_id: hall.id }),
+        });
+        if ((await res.json()).status === "success") {
+          setMyFavourite(myFavourite.filter((item) => item.id !== hall.id));
+        }
+      } else {
+        const res = await fetch(`${API_BASE}/akramWork/addToFavourite.php`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ client_id: user.id, hall_id: hall.id }),
+        });
+        if ((await res.json()).status === "success") {
+          setMyFavourite([...myFavourite, hall]);
+        }
+      }
+    } catch (err) {
+      console.error("Favourite toggle failed", err);
+      setMyFavourite(isFav ? myFavourite.filter((item) => item.id !== hall.id) : [...myFavourite, hall]);
     }
   };
   // !this is the importation of the useNavigate
@@ -26,7 +47,7 @@ const OneHall = ({ hall, isAuth, setIsAuth, myFavourite, setMyFavourite }) => {
       <Card className="Card">
         <Card.Img
           variant="top"
-          src={hall.image[0]}
+          src={hall.images?.[0] || "https://images.unsplash.com/photo-1519167758481-83f29da8c2b5?w=800"}
           style={{ height: "200px" }}
           className="image"
         />
@@ -51,9 +72,8 @@ const OneHall = ({ hall, isAuth, setIsAuth, myFavourite, setMyFavourite }) => {
                   style={{ position: "absolute", top: "-3rem", right: "-0rem" }}
                 >
                   <i
-                    className={`${
-                      isFav ? "fa-solid" : "fa-regular"
-                    } fa-heart fa-xl`}
+                    className={`${isFav ? "fa-solid" : "fa-regular"
+                      } fa-heart fa-xl`}
                     style={{
                       color: "#ffffff",
                       textShadow: "0px 0px 5px gray",
@@ -71,9 +91,9 @@ const OneHall = ({ hall, isAuth, setIsAuth, myFavourite, setMyFavourite }) => {
             {/* <div>
             </div> */}
             <div>
-              <Card.Text className="location">
+              <Card.Text tag="div" className="location">
                 <div>
-                  <i class="fa-solid fa-location-dot"></i> {hall.location}{" "}
+                  <i className="fa-solid fa-location-dot"></i> {hall.location}{" "}
                 </div>
                 <div>
                   <Rating isAuth={isAuth} setIsAuth={setIsAuth} />

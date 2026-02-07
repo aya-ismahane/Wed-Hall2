@@ -1,125 +1,166 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import OneHall from "../OneHall/OneHall.jsx";
-import "./HallList.css";
+import AddHallPopup from "./AddHallPopup.jsx";
+import EditHallPopup from "./EditHallPopup.jsx";
 
-function HallsList({ halls = [], setHalls, limit = 4 }) {
-  const [showForm, setShowForm] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    location: "",
-    price: "",
-    description: "",
-    image: "",
-  });
+const HallList = ({ halls, API_BASE, ownerId, refreshHalls }) => {
+  const [showAdd, setShowAdd] = useState(false);
+  const [editingHall, setEditingHall] = useState(null);
+  const [deletingId, setDeletingId] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const limitedHalls = halls.slice(0, limit);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-
-    if (name === "price") {
-      if (!/^\d*$/.test(value)) return; // only digits
-    }
-
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData((prev) => ({ ...prev, image: reader.result }));
-      };
-      reader.readAsDataURL(file);
+  const handleAddHall = async (data) => {
+    if (!API_BASE) return;
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_BASE}/aishaWork/ownerAddHall.php`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(data),
+      });
+      const result = await res.json();
+      if (result.status === "success") {
+        setShowAdd(false);
+        if (refreshHalls) refreshHalls();
+      } else {
+        alert(result.error || "Failed to add hall");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Failed to add hall");
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!formData.name || !formData.location) return;
+  const handleUpdateHall = async (data) => {
+    if (!API_BASE || !ownerId) return;
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_BASE}/aishaWork/ownerUpdateHall.php`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          hall_id: data.hall_id,
+          owner_id: ownerId,
+          name: data.name,
+          price: data.price,
+          description: data.description,
+        }),
+      });
+      const result = await res.json();
+      if (result.status === "success") {
+        setEditingHall(null);
+        if (refreshHalls) refreshHalls();
+      } else {
+        alert(result.error || "Failed to update hall");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Failed to update hall");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    const newHall = {
-      id: Date.now(),
-      ...formData,
-      price: formData.price ? `${formData.price} DZD` : "",
-      rating: 0,
-    };
-
-    setHalls([...halls, newHall]);
-    setShowForm(false);
-    setFormData({ name: "", location: "", price: "", description: "", image: "" });
+  const handleDeleteHall = async (hall) => {
+    if (!API_BASE || !ownerId) return;
+    if (!window.confirm(`Delete hall "${hall.name}"?`)) return;
+    setDeletingId(hall.id);
+    try {
+      const res = await fetch(`${API_BASE}/aishaWork/ownerDeleteHall.php`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ hall_id: hall.id, owner_id: ownerId }),
+      });
+      const result = await res.json();
+      if (result.status === "success") {
+        if (refreshHalls) refreshHalls();
+      } else {
+        alert(result.error || "Failed to delete hall");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Failed to delete hall");
+    } finally {
+      setDeletingId(null);
+    }
   };
 
   return (
-    <div className="halls-section">
-      <div className="section-header">
-        <h2>My Halls</h2>
-        {halls.length > 4 && (
-          <Link to="/halls" className="see-all">See All</Link>
+    <div>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", flexWrap: "wrap", gap: "8px" }}>
+        <h4 style={{ margin: 0 }}>My Halls</h4>
+        {API_BASE && ownerId && (
+          <button
+            type="button"
+            onClick={() => setShowAdd(true)}
+            style={{ padding: "8px 16px", background: "#28a745", color: "#fff", border: "none", borderRadius: "4px", cursor: "pointer" }}
+          >
+            + Add Hall
+          </button>
         )}
       </div>
-
-      <div className="halls-container">
-        {limitedHalls.map((hall) => (
-          <OneHall key={hall.id} hall={hall} setHalls={setHalls} />
-        ))}
-
-        <div className="add-hall-box" onClick={() => setShowForm(true)}>
-          <span className="add-hall-link">+ Add New Hall</span>
-        </div>
-      </div>
-
-      {showForm && (
-        <div className="popup-overlay">
-          <div className="popup-content">
-            <h2>Add New Hall</h2>
-
-            <form onSubmit={handleSubmit} className="popup-form">
-              <label>Hall Name</label>
-              <input name="name" value={formData.name} onChange={handleInputChange} required />
-
-              <label>Location</label>
-              <input name="location" value={formData.location} onChange={handleInputChange} required />
-
-              <label>Price (DZD)</label>
-              <input
-                name="price"
-                value={formData.price}
-                onChange={handleInputChange}
-                placeholder="Digits only"
-              />
-
-              <label>Description</label>
-              <textarea
-                name="description"
-                value={formData.description}
-                onChange={handleInputChange}
-                rows="3"
-              ></textarea>
-
-              <label>Upload Image</label>
-              <input type="file" accept="image/*" onChange={handleImageUpload} />
-
-              {formData.image && (
-                <div className="image-preview">
-                  <img src={formData.image} alt="Preview" />
-                </div>
-              )}
-
-              <div className="popup-buttons">
-                <button type="submit" className="save-btn">Save</button>
-                <button type="button" className="cancel-btn" onClick={() => setShowForm(false)}>
-                  Cancel
+      <div className="hall-list" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", gap: "20px", padding: "0" }}>
+        {halls.map((hall) => (
+          <div
+            key={hall.id}
+            className="hall-card"
+            style={{ border: "1px solid #ddd", borderRadius: "8px", overflow: "hidden", position: "relative" }}
+          >
+            <img
+              src={hall.image || hall.images?.[0] || "https://via.placeholder.com/300"}
+              alt={hall.name}
+              style={{ width: "100%", height: "200px", objectFit: "cover" }}
+            />
+            <div style={{ padding: "15px" }}>
+              <h4 style={{ margin: "0 0 8px" }}>{hall.name}</h4>
+              <p style={{ margin: "4px 0", fontSize: "14px" }}>{hall.location || "—"}</p>
+              <p style={{ margin: "4px 0", fontSize: "14px" }}>{hall.price != null ? `${Number(hall.price).toLocaleString()} DZD` : "—"}</p>
+              <p style={{ margin: "4px 0", fontSize: "14px" }}>Rating: {hall.rating != null ? hall.rating : "—"} ★</p>
+            </div>
+            {API_BASE && ownerId && (
+              <div style={{ padding: "8px 15px 15px", display: "flex", gap: "8px" }}>
+                <button
+                  type="button"
+                  onClick={() => setEditingHall(hall)}
+                  style={{ padding: "6px 12px", background: "#007bff", color: "#fff", border: "none", borderRadius: "4px", cursor: "pointer", fontSize: "13px" }}
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleDeleteHall(hall)}
+                  disabled={deletingId === hall.id}
+                  style={{ padding: "6px 12px", background: "#dc3545", color: "#fff", border: "none", borderRadius: "4px", cursor: "pointer", fontSize: "13px" }}
+                >
+                  {deletingId === hall.id ? "..." : "Delete"}
                 </button>
               </div>
-            </form>
+            )}
           </div>
-        </div>
+        ))}
+      </div>
+
+      {showAdd && (
+        <AddHallPopup
+          onClose={() => setShowAdd(false)}
+          onSubmit={handleAddHall}
+          loading={loading}
+        />
+      )}
+      {editingHall && (
+        <EditHallPopup
+          hall={editingHall}
+          onClose={() => setEditingHall(null)}
+          onSubmit={handleUpdateHall}
+          loading={loading}
+        />
       )}
     </div>
   );
-}
+};
 
-export default HallsList;
+export default HallList;

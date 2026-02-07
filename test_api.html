@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+</head>
+<body>
+    <h1>Backend API Test</h1>
+    <button onclick="testSignup()">Test Signup Client</button>
+    <button onclick="testSignupOwner()">Test Signup Owner</button>
+    <pre id="result"></pre>
+
+    <script>
+        const API_BASE = 'http://localhost:8000';
+        
+        async function testSignup() {
+            const result = document.getElementById('result');
+            result.textContent = 'Testing Client Signup...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/auth/signup_client.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        fullName: 'Test User',
+                        email: `test_${Date.now()}@example.com`,
+                        password: 'password123',
+                        phone: '0123456789',
+                        city: 'Algiers'
+                    })
+                });
+                
+                const data = await response.json();
+                result.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                result.textContent = 'Error: ' + error.message;
+                console.error('Full error:', error);
+            }
+        }
+
+        async function testSignupOwner() {
+            const result = document.getElementById('result');
+            result.textContent = 'Testing Owner Signup...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/auth/signup_owner.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        fullName: 'Test Owner',
+                        email: `owner_${Date.now()}@example.com`,
+                        password: 'password123',
+                        phone: '0987654321',
+                        wilaya: 'Oran'
+                    })
+                });
+                
+                const data = await response.json();
+                result.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                result.textContent = 'Error: ' + error.message;
+                console.error('Full error:', error);
+            }
+        }
+    </script>
+</body>
+</html>

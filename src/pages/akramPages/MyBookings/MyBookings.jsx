@@ -3,42 +3,26 @@ import "./MyBookings.css";
 import BookingInfo from "../../../components/akramComponents/BookingInfo/BookingInfo";
 import FavouriteList from "../../../components/akramComponents/FavouriteLIst/FavouriteList";
 import EditProfileUser from "../../../components/akramComponents/editProfileUser/EditProfileUser";
+import { useAuth } from "../../../context/AuthContext";
 const MyBookings = ({
-  owner,
-  setOwner,
-  onEdit,
   myFavourite,
   setMyFavourite,
 }) => {
+  const { user } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
-  console.log("isEditing", isEditing);
+
+  if (!user) return <div className="profile-container">Please log in.</div>;
+
   return (
     <div>
       <div className="profile-fluid">
         <div className="profile">
-          {/* <div className="avatar">
-            <img src="/assets/avatar.png" height={150} width={150} alt="" />
-          </div> */}
-          {/* <div className="info-container">
-            <div className="userName">UserName</div>
-            <div className="name">Name family name</div>
-            <div className="email">
-              <i class="fa-solid fa-envelope"></i> email@example.com
-            </div>
-            <div className="phone">
-              <i class="fa-solid fa-phone"></i> phone number
-            </div>
-            <div className="city">
-              <i class="fa-solid fa-location-dot"></i> city adress
-            </div>
-          </div> */}
           <div className="owner-card">
-            <img src={owner.picture} alt="Profile" className="owner-img" />
-            <h3>{owner.fullName}</h3>
-            <p>{owner.email}</p>
-            <p>{owner.phoneNum} </p>
-            <p>{owner.wilaya}</p>
-            {/* <EditProfileUser owner={owner} setOwner={setOwner} /> */}
+            <img src={user.picture || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"} alt="Profile" className="owner-img" />
+            <h3>{user.full_name || user.fullName}</h3>
+            <p>{user.email}</p>
+            <p>{user.phone || 'No phone provided'} </p>
+            <p>{user.wilaya}</p>
             <button
               onClick={() => {
                 setIsEditing(!isEditing);
@@ -49,10 +33,8 @@ const MyBookings = ({
             </button>
             {isEditing && (
               <EditProfileUser
-                owner={owner}
-                setOwner={setOwner}
+                owner={user}
                 onClose={() => setIsEditing(false)}
-                onEdit={() => setIsEditing(true)}
               />
             )}
           </div>

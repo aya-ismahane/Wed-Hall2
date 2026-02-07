@@ -1,96 +1,97 @@
-import React, { useState } from "react";
-import "./ProfilePopup.css";
+import React, { useState } from 'react';
 
-function ProfilePopup({ owner, setOwner, onClose }) {
-  const [tempOwner, setTempOwner] = useState(owner);
-  const [errors, setErrors] = useState({});
+const ProfilePopup = ({ owner, onClose, API_BASE, onSaveSuccess }) => {
+    const [formData, setFormData] = useState({
+        full_name: owner?.full_name ?? owner?.fullName ?? '',
+        fullName: owner?.full_name ?? owner?.fullName ?? '',
+        phone: owner?.phone ?? '',
+        wilaya: owner?.wilaya ?? '',
+    });
+    const [saving, setSaving] = useState(false);
+    const [error, setError] = useState(null);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+    const handleChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        setFormData((prev) => ({ ...prev, [name]: value, full_name: name === 'fullName' ? value : prev.full_name }));
+    };
 
-    // Validation
-    if (name === "phoneNum") {
-      if (!/^\d*$/.test(value)) return; // only digits allowed
-    }
+    const handleSave = async () => {
+        if (!API_BASE || !owner?.id) return;
+        setSaving(true);
+        setError(null);
+        try {
+            const res = await fetch(`${API_BASE}/aishaWork/ownerProfileUpdate.php`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
+                body: JSON.stringify({
+                    owner_id: owner.id,
+                    fullName: formData.fullName || formData.full_name,
+                    phone: formData.phone,
+                    wilaya: formData.wilaya,
+                }),
+            });
+            const data = await res.json();
+            if (data.status === 'success') {
+                if (typeof onSaveSuccess === 'function') onSaveSuccess(data.owner);
+                onClose();
+            } else {
+                setError(data.message || 'Failed to update profile');
+            }
+        } catch (err) {
+            setError('Network error');
+        } finally {
+            setSaving(false);
+        }
+    };
 
-    setTempOwner({ ...tempOwner, [name]: value });
-  };
+    return (
+        <div className="popup-overlay" style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div className="popup-content" style={{ background: '#fff', padding: '20px', borderRadius: '8px', width: '400px' }}>
+                <h3>Edit Profile</h3>
 
-  const handleSave = () => {
-    const newErrors = {};
-    if (!tempOwner.fullName.trim()) newErrors.fullName = "Full name is required.";
-    if (!/^\d{8,}$/.test(tempOwner.phoneNum))
-      newErrors.phoneNum = "Phone number must contain only digits (min 8).";
+                <div style={{ marginBottom: '10px' }}>
+                    <label>Full Name</label>
+                    <input
+                        type="text"
+                        name="fullName"
+                        value={formData.fullName || formData.full_name || ''}
+                        onChange={handleChange}
+                        style={{ width: '100%', padding: '8px', marginTop: '5px' }}
+                    />
+                </div>
 
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
+                <div style={{ marginBottom: '10px' }}>
+                    <label>Phone</label>
+                    <input
+                        type="text"
+                        name="phone"
+                        value={formData.phone || ''}
+                        onChange={handleChange}
+                        style={{ width: '100%', padding: '8px', marginTop: '5px' }}
+                    />
+                </div>
 
-    setOwner(tempOwner);
-    onClose();
-  };
+                <div style={{ marginBottom: '10px' }}>
+                    <label>Wilaya</label>
+                    <input
+                        type="text"
+                        name="wilaya"
+                        value={formData.wilaya || ''}
+                        onChange={handleChange}
+                        style={{ width: '100%', padding: '8px', marginTop: '5px' }}
+                    />
+                </div>
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setTempOwner({ ...tempOwner, picture: URL.createObjectURL(file) });
-    }
-  };
-
-  return (
-    <div className="popup-overlay">
-      <div className="popup">
-        <h2>Edit Profile</h2>
-
-        <label>Full Name</label>
-        <input
-          type="text"
-          name="fullName"
-          value={tempOwner.fullName}
-          onChange={handleChange}
-          placeholder="Enter your full name"
-        />
-        {errors.fullName && <p className="error">{errors.fullName}</p>}
-
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          value={tempOwner.email}
-          onChange={handleChange}
-          placeholder="example@email.com"
-        />
-
-        <label>Phone Number</label>
-        <input
-          type="text"
-          name="phoneNum"
-          value={tempOwner.phoneNum}
-          onChange={handleChange}
-          placeholder="Digits only"
-          maxLength="10"
-        />
-        {errors.phoneNum && <p className="error">{errors.phoneNum}</p>}
-
-        <label>Wilaya</label>
-        <input
-          type="text"
-          name="wilaya"
-          value={tempOwner.wilaya}
-          onChange={handleChange}
-        />
-
-        <label>Profile Picture</label>
-        <input type="file" accept="image/*" onChange={handleImageChange} />
-
-        <div className="popup-buttons">
-          <button onClick={handleSave} className="save-btn">Save</button>
-          <button onClick={onClose} className="cancel-btn">Cancel</button>
+                {error && <p style={{ color: 'red', marginBottom: 10 }}>{error}</p>}
+                <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
+                    <button onClick={onClose} disabled={saving} style={{ padding: '8px 16px', background: '#ccc', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Cancel</button>
+                    <button onClick={handleSave} disabled={saving} style={{ padding: '8px 16px', background: '#28a745', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>{saving ? 'Saving...' : 'Save'}</button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
-}
+    );
+};
 
 export default ProfilePopup;

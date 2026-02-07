@@ -13,35 +13,60 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 0.5rem 5%;
-  background: #9D735B;
+  padding: 0.8rem 5%;
+  background: rgba(157, 115, 91, 0.95);
+  backdrop-filter: blur(10px);
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 10000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Logo */
 .logo {
   font-family: "Great Vibes", cursive;
   color: white;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   text-decoration: none;
   z-index: 10001;
+  transition: transform 0.3s;
+}
+
+.logo:hover {
+  transform: scale(1.05);
 }
 
 /* Navbar */
 .navbar {
   display: flex;
+  align-items: center;
 }
 
 .navbar a {
   color: white;
-  margin-left: 2rem;
+  margin-left: 1.8rem;
   text-decoration: none;
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1rem;
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s;
+}
+
+.navbar a.profile-link {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 15px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-weight: 600;
+}
+
+.navbar a.profile-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
 }
 
 .navbar a::before {
@@ -50,13 +75,35 @@
   width: 0;
   height: 2px;
   background: white;
-  bottom: -2px;
+  bottom: -4px;
   left: 0;
   transition: width 0.3s;
 }
 
+.navbar a.profile-link::before {
+  display: none;
+}
+
 .navbar a:hover::before {
   width: 100%;
+}
+
+.logout-btn {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 6px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.logout-btn:hover {
+  background: #dc3545;
+  border-color: #dc3545;
 }
 
 /* Hamburger */
@@ -73,7 +120,7 @@
   right: -100%;
   width: 70%;
   max-width: 300px;
-  min-height: 102vh;
+  min-height: 100vh;
   background: #9D735B;
   display: flex;
   flex-direction: column;
@@ -91,6 +138,27 @@
   color: white;
   font-size: 1.2rem;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar .sidebar-link {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  text-align: left;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logout-sidebar {
+  color: #ffbaba !important;
+  margin-top: 1rem;
 }
 
 /* Overlay */
@@ -100,7 +168,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s;
@@ -113,16 +181,15 @@
 }
 
 /* Tablet adjustments */
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .navbar a {
-    margin-left: 1.5rem;
-    font-size: 1rem;
+    margin-left: 1.2rem;
+    font-size: 0.9rem;
   }
-
 }
 
-/* Mobile (<600px) */
-@media (max-width: 600px) {
+/* Mobile (<768px) */
+@media (max-width: 768px) {
   .navbar {
     display: none;
   }
@@ -133,53 +200,64 @@
   }
 
   .header {
-    justify-content: flex-start;
-    padding: 0.5rem 1rem;
+    justify-content: space-between;
+    padding: 0.6rem 5%;
   }
 
   .logo {
-    margin-left: 1rem;
+    font-size: 1.8rem;
   }
 }
+
 /* Fade-in and slide-up animation */
 @keyframes fadeInUp {
   0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
 .header .logo,
 .header .navbar a,
-.header .hamburger {
-  opacity: 0; /* start hidden */
-  animation: fadeInUp 0.8s ease forwards;
+.header .hamburger,
+.header .logout-btn {
+  opacity: 0;
+  animation: fadeInUp 0.5s ease forwards;
 }
 
-/* Staggered animation delays */
 .header .logo {
-  animation-delay: 0.2s;
+  animation-delay: 0.1s;
 }
 
 .header .navbar a:nth-child(1) {
-  animation-delay: 0.4s;
+  animation-delay: 0.2s;
 }
 
 .header .navbar a:nth-child(2) {
-  animation-delay: 0.6s;
+  animation-delay: 0.3s;
 }
 
 .header .navbar a:nth-child(3) {
-  animation-delay: 0.8s;
+  animation-delay: 0.4s;
 }
 
 .header .navbar a:nth-child(4) {
-  animation-delay: 1s;
+  animation-delay: 0.5s;
+}
+
+.header .navbar a:nth-child(5) {
+  animation-delay: 0.6s;
+}
+
+.header .logout-btn {
+  animation-delay: 0.7s;
 }
 
 .header .hamburger {
-  animation-delay: 1.2s;
+  animation-delay: 0.2s;
 }

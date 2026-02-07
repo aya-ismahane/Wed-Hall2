@@ -9,12 +9,15 @@ const HallsList = ({
   setMyFavourite,
   favourite,
   setFavourite,
+  API_BASE,
+  user,
+  userRole,
 }) => {
   return (
     <div className="halls-container">
       {halls.map((hall, index) => (
         <OneHall
-          key={index}
+          key={hall.id || index}
           hall={hall}
           isAuth={isAuth}
           setIsAuth={setIsAuth}
@@ -22,6 +25,9 @@ const HallsList = ({
           setMyFavourite={setMyFavourite}
           favourite={favourite}
           setFavourite={setFavourite}
+          API_BASE={API_BASE}
+          user={user}
+          userRole={userRole}
         />
       ))}
     </div>

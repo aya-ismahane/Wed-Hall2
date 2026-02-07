@@ -3,64 +3,87 @@ import arrow from "../../../images/assets/arrow.svg";
 import component from "../../../images/assets/component.svg";
 import locate from "../../../images/assets/locate.svg";
 import sched from "../../../images/assets/sched.svg";
-import hall from "../../../images/assets/hall.png";
 import pfp from "../../../images/assets/owner.png";
 import React, { useEffect, useState } from "react";
 import Schedule from "../schedule/Schedule.jsx";
 import MapLeaf from "../map/Map.jsx";
-import { Link, useParams } from "react-router-dom";
-import weddingHalls from "../../../halls.js";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 
 const HallCard = ({
-  img,
-  name,
-  rating,
-  location,
-  description,
-  price,
   services,
 }) => {
+  const { API_BASE, user, role } = useAuth();
+  const navigate = useNavigate();
+  const params = useParams();
+
+  const [currentHall, setCurrentHall] = useState(null);
   const [showBooking, setShowBooking] = useState(false);
   const [booked, setBooked] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
-  const [arrHalls, setArrHalls] = useState(weddingHalls);
-  // Example booked days (from Schedule) - November 2025
-  const scheduleBookedDays = [5, 12, 19];
-  const bookedDates = scheduleBookedDays.map(
-    (day) => `2025-11-${String(day).padStart(2, "0")}`
-  );
-  const [currnetHall, setCurrentHall] = useState({});
+  const [bookedDates, setBookedDates] = useState([]);
+
+  // Fetch hall details
+  useEffect(() => {
+    const fetchHall = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/akramWork/getAllHalls.php`);
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          const id = Number(params.id);
+          const found = data.find((h) => h.id === id);
+          if (found) setCurrentHall(found);
+        }
+      } catch (err) {
+        console.error("Failed to fetch hall details", err);
+      }
+    };
+    fetchHall();
+  }, [API_BASE, params.id]);
+
+  // Fetch booked dates for this hall
+  useEffect(() => {
+    const fetchBookedDates = async () => {
+      if (!currentHall) return;
+
+      try {
+        const res = await fetch(`${API_BASE}/ayaWork/getHallBookings.php?hall_id=${currentHall.id}`);
+        const bookings = await res.json();
+
+        if (Array.isArray(bookings)) {
+          setBookedDates(bookings);
+        }
+      } catch (err) {
+        console.error("Failed to fetch booked dates", err);
+      }
+    };
+    fetchBookedDates();
+  }, [API_BASE, currentHall]);
+
   const handleBookClick = () => {
+    if (!user) {
+      alert("Please login to book a hall");
+      navigate("/login");
+      return;
+    }
+    if (role === 'owner') {
+      alert("Owners cannot book halls. Please login as a client.");
+      return;
+    }
     if (!booked) setShowBooking(!showBooking);
   };
 
-  const params = useParams();
-  useEffect(() => {
-    const id = Number(params.id);
-    setCurrentHall(arrHalls.find((hall) => hall.id == id));
-  }, [params, arrHalls]);
-  console.log("current", currnetHall);
-  // console.log('id',id)
-
   const handleFromChange = (e) => {
     const date = e.target.value;
-    if (bookedDates.includes(date)) {
-      alert("This 'From' date is already booked!");
-      setFromDate("");
-    } else {
-      setFromDate(date);
-      if (toDate && toDate < date) setToDate("");
-    }
+    setFromDate(date);
+    if (toDate && toDate < date) setToDate("");
   };
 
   const handleToChange = (e) => {
     const date = e.target.value;
-    if (bookedDates.includes(date)) {
-      alert("This 'To' date is already booked!");
-      setToDate("");
-    } else if (fromDate && date <= fromDate) {
+    if (fromDate && date <= fromDate) {
       alert("'To' date must be after 'From' date!");
       setToDate("");
     } else {
@@ -68,15 +91,70 @@ const HallCard = ({
     }
   };
 
-  const handleConfirm = () => {
+  // Check if selected dates conflict with existing bookings
+  const checkDateConflict = (start, end) => {
+    return bookedDates.some(booking => {
+      const bookingStart = new Date(booking.start_date);
+      const bookingEnd = new Date(booking.end_date);
+      const selectedStart = new Date(start);
+      const selectedEnd = new Date(end);
+
+      // Check for overlap
+      return (
+        (selectedStart <= bookingEnd && selectedEnd >= bookingStart) ||
+        (selectedStart >= bookingStart && selectedStart <= bookingEnd) ||
+        (selectedEnd >= bookingStart && selectedEnd <= bookingEnd)
+      );
+    });
+  };
+
+  const handleConfirm = async () => {
     if (!fromDate || !toDate) {
       alert("Please select valid dates");
       return;
     }
-    alert(`Booking confirmed from ${fromDate} to ${toDate}`);
-    setBooked(true);
-    setShowBooking(false);
+
+    // Check for date conflicts
+    if (checkDateConflict(fromDate, toDate)) {
+      alert("These dates are already booked. Please select different dates.");
+      return;
+    }
+
+    try {
+      const res = await fetch(`${API_BASE}/ayaWork/createHallBooking.php`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({
+          client_id: user.id,
+          hall_id: currentHall.id,
+          start_date: fromDate,
+          end_date: toDate,
+          total_price: currentHall.price // Simplified price logic
+        })
+      });
+      const data = await res.json();
+
+      if (data.status === 'success') {
+        alert(`Booking confirmed from ${fromDate} to ${toDate}`);
+        setBooked(true);
+        setShowBooking(false);
+        // Refresh booked dates
+        const refreshRes = await fetch(`${API_BASE}/ayaWork/getHallBookings.php?hall_id=${currentHall.id}`);
+        const refreshedBookings = await refreshRes.json();
+        if (Array.isArray(refreshedBookings)) {
+          setBookedDates(refreshedBookings);
+        }
+      } else {
+        alert(data.error || "Booking failed");
+      }
+    } catch (err) {
+      console.error("Booking error:", err);
+      alert("An error occurred while booking");
+    }
   };
+
+  if (!currentHall) return <div>Loading Hall Details...</div>;
 
   return (
     <div style={{ backgroundColor: "transparent" }}>
@@ -120,7 +198,7 @@ const HallCard = ({
               <h2>Location</h2>
             </div>
             <div className="map">
-              <MapLeaf hallLat={36.689} hallLng={2.895} zoom={14} />
+              <MapLeaf hallLat={currentHall.lat || 36.75} hallLng={currentHall.lng || 3.05} zoom={14} />
             </div>
           </div>
 
@@ -131,7 +209,7 @@ const HallCard = ({
                 <img src={sched} alt="Schedule" />
                 <h2>Schedule</h2>
               </div>
-              <Schedule bookedDates={scheduleBookedDays} pinnedDate={10} />
+              <Schedule bookedDates={bookedDates} pinnedDate={10} />
             </div>
           </div>
         </div>
@@ -141,15 +219,15 @@ const HallCard = ({
           <div className="image-holder">
             <div className="owner-pfp">
               <Link to="/profile">
-                <img src={pfp} alt="{owner.fullName}" />
+                <img src={pfp} alt="Owner profile" />
               </Link>
             </div>
 
-            <img src={currnetHall?.image?.[0]} alt="main" className="main" />
-            <img src={currnetHall?.image?.[1]} alt="side2" className="small1" />
-            <img src={currnetHall?.image?.[2]} alt="side3" className="small2" />
+            <img src={currentHall?.images?.[0] || currentHall?.image?.[0]} alt="main" className="main" />
+            <img src={currentHall?.images?.[1] || currentHall?.image?.[1]} alt="side2" className="small1" />
+            <img src={currentHall?.images?.[2] || currentHall?.image?.[2]} alt="side3" className="small2" />
             <div className="small3" onClick={() => setShowPopup(true)}>
-              <img src={currnetHall?.image?.[0]} alt="side4" />
+              <img src={currentHall?.images?.[0] || currentHall?.image?.[0]} alt="side4" />
               <div className="see-more-overlay">See more</div>
             </div>
             {showPopup && (
@@ -159,8 +237,8 @@ const HallCard = ({
                   className="popup-content"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  {currnetHall.image.map((hi) => (
-                    <img src={hi} />
+                  {(currentHall.images || currentHall.image)?.map((hi, index) => (
+                    <img key={index} src={hi} alt={`Hall image ${index + 1}`} />
                   ))}
                 </div>
               </div>
@@ -169,17 +247,16 @@ const HallCard = ({
 
           <div className="hall-details">
             <div className="info-name">
-              <h2 className="hall-name">{currnetHall.name}</h2>
-              <p className="hall-rating">{currnetHall.rate}</p>
+              <h2 className="hall-name">{currentHall.name}</h2>
+              <p className="hall-rating">{currentHall.rating} ★</p>
             </div>
-            <p className="hall-location">{currnetHall.location}</p>
-            <p className="hall-description">{currnetHall.description}</p>
-            <p className="price">{currnetHall.price} CENTIM</p>
+            <p className="hall-location">{currentHall.location}</p>
+            <p className="hall-description">{currentHall.description}</p>
+            <p className="price">{Number(currentHall.price).toLocaleString()} DZD</p>
 
             <button
-              className={`book-now-button ${
-                booked ? "gray" : showBooking ? "active" : ""
-              }`}
+              className={`book-now-button ${booked ? "gray" : showBooking ? "active" : ""
+                }`}
               onClick={handleBookClick}
             >
               {booked ? "Booked" : showBooking ? "Booking..." : "Book Now"}
@@ -207,6 +284,10 @@ const HallCard = ({
                       min={fromDate || ""}
                     />
                   </div>
+                </div>
+
+                <div className="total-price-preview">
+                  Total: {currentHall.price} DZD (Estimate)
                 </div>
 
                 <button className="confirm-button" onClick={handleConfirm}>
